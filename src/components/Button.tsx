@@ -22,11 +22,9 @@ export default Button;
 const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.PRIMARY,
-    padding: 14,
-    marginTop: 24,
+    padding: 12,
     marginHorizontal: 16,
     borderRadius: 6,
-    justifyContent: 'center',
   },
   text: {
     color: 'black',

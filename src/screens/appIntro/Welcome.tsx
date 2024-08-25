@@ -1,7 +1,6 @@
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Button from '../../components/Button';
-import {colors} from '../../utilities/constants';
 
 const Welcome = () => {
   return (
@@ -9,10 +8,20 @@ const Welcome = () => {
       <ImageBackground
         source={require('../../assets/images/Deliveryboy.png')}
         style={styles.image}>
-        <Text style={styles.text}>Welcome To Our</Text>
-        <Text style={styles.extraText}>Delivery App</Text>
-        <View>
-          <Button title={'Continue as a User'} />
+        <View style={styles.content}>
+          <Text style={styles.text}>Welcome To Our</Text>
+          <Text style={styles.extraText}>Delivery App</Text>
+          <View>
+            <Button title={'Continue as a User'} />
+            <View style={styles.dividerContainer}>
+              <View style={styles.divider}></View>
+              <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>
+                Or
+              </Text>
+              <View style={styles.divider}></View>
+            </View>
+            <Button title={'Continue as a Vendor'} />
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -25,6 +34,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  image: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    marginBottom: 50,
+  },
   text: {
     color: 'white',
     textAlign: 'center',
@@ -36,11 +53,20 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 70,
     marginTop: -6,
+    marginBottom: 24,
     fontFamily: 'MrsSheppards-Regular',
   },
-  image: {
-    resizeMode: 'cover',
-    flex: 1,
+
+  dividerContainer: {
+    flexDirection: 'row',
     justifyContent: 'center',
+    marginVertical: 24,
+    alignItems: 'center',
+    gap: 10,
+  },
+  divider: {
+    height: 2,
+    backgroundColor: 'white',
+    width: '38%',
   },
 });
