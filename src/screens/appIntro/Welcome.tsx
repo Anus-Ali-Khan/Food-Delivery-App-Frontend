@@ -1,8 +1,12 @@
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Button from '../../components/Button';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
+import {ScrollView} from 'react-native-gesture-handler';
 
 const Welcome = () => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -12,7 +16,10 @@ const Welcome = () => {
           <Text style={styles.text}>Welcome To Our</Text>
           <Text style={styles.extraText}>Delivery App</Text>
           <View>
-            <Button title={'Continue as a User'} />
+            <Button
+              title={'Continue as a User'}
+              onPress={() => navigation.navigate('OnBoarding')}
+            />
             <View style={styles.dividerContainer}>
               <View style={styles.divider}></View>
               <Text style={{color: 'white', fontWeight: '700', fontSize: 15}}>

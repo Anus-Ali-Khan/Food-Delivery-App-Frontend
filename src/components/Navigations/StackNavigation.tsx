@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from '../../screens/appIntro/SplashScreen';
 import Welcome from '../../screens/appIntro/Welcome';
 import OnBoarding from '../../screens/appIntro/OnBoarding';
+import SignUp from '../../screens/authScreens/SignUp';
 
 const Stack = createStackNavigator();
 
@@ -14,7 +15,8 @@ const StackNavigation = () => {
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="Welcome" component={Welcome} />
-      <Stack.Screen name="OnBorading" component={OnBoarding} />
+      <Stack.Screen name="OnBoarding" component={OnBoarding} />
+      <Stack.Screen name="SignUp" component={SignUp} />
     </Stack.Navigator>
   );
 };
