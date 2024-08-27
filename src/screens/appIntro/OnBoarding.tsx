@@ -3,6 +3,7 @@ import React from 'react';
 import Button from '../../components/Button';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {fonts} from '../../utilities/constants';
 
 const OnBoarding = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -43,6 +44,7 @@ const styles = StyleSheet.create({
     fontWeight: 'medium',
     fontSize: 32,
     marginBottom: -16,
+    fontFamily: fonts.PRIMARY,
   },
   extraText: {
     color: 'white',

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import React from 'react';
-import {colors} from '../utilities/constants';
+import {colors, fonts} from '../utilities/constants';
 
 type PropsType = {
   title: string;
@@ -43,9 +43,10 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   text: {
-    color: 'black',
+    color: '1E1E1E',
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'medium',
+    fontFamily: fonts.PRIMARY,
   },
 });

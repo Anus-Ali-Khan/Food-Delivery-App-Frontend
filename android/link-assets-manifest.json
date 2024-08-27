@@ -4,6 +4,14 @@
     {
       "path": "src/assets/fonts/MrsSheppards-Regular.ttf",
       "sha1": "ad0ee7c170d508380f40946fe91d0172c44aae06"
+    },
+    {
+      "path": "src/assets/fonts/Urbanist-Italic-VariableFont_wght.ttf",
+      "sha1": "8fe501a38c9d2bc3f9c91118ad89ac4e3688dfbd"
+    },
+    {
+      "path": "src/assets/fonts/Urbanist-VariableFont_wght.ttf",
+      "sha1": "a417404db6d1af5903e3884eea811ed9e1b5ea1a"
     }
   ]
 }

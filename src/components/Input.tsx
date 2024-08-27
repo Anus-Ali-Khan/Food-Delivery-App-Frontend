@@ -1,7 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
-import {ScrollView, TextInput} from 'react-native-gesture-handler';
-import {colors} from '../utilities/constants';
+import {TextInput} from 'react-native-gesture-handler';
+import {colors, fonts} from '../utilities/constants';
+import FeatherIcons from 'react-native-vector-icons/Feather';
 
 type PropsType = {
   placeholder: string;
@@ -21,14 +22,15 @@ const Input = ({
   name,
 }: PropsType) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(secureTextEntry);
 
   return (
-    <View>
+    <View style={{position: 'relative'}}>
       <TextInput
         placeholder={placeholder}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}
-        secureTextEntry={secureTextEntry}
+        secureTextEntry={showPassword}
         onChangeText={onChangeText}
         value={value}
         style={[
@@ -37,8 +39,28 @@ const Input = ({
         ]}
       />
       {errors[name] && (
-        <Text style={{color: 'red'}}>{errors[name]?.message}</Text>
+        <Text style={{color: 'red', fontFamily: fonts.PRIMARY}}>
+          {errors[name]?.message}
+        </Text>
       )}
+      {secureTextEntry &&
+        (showPassword ? (
+          <FeatherIcons
+            name="eye"
+            color={'#2d333a'}
+            size={22}
+            style={{position: 'absolute', top: 14, right: 15}}
+            onPress={() => setShowPassword(false)}
+          />
+        ) : (
+          <FeatherIcons
+            name="eye-off"
+            color={'#2d333a'}
+            size={22}
+            style={{position: 'absolute', top: 14, right: 15}}
+            onPress={() => setShowPassword(true)}
+          />
+        ))}
     </View>
   );
 };
@@ -50,5 +72,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     paddingHorizontal: 10,
+    fontFamily: fonts.PRIMARY,
   },
 });

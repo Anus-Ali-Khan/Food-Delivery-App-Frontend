@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '../../components/Button';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {ScrollView} from 'react-native-gesture-handler';
+import {fonts} from '../../utilities/constants';
 
 const Welcome = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontWeight: 'medium',
     fontSize: 32,
+    fontFamily: fonts.PRIMARY,
   },
   extraText: {
     color: 'white',
