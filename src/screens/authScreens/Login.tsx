@@ -38,6 +38,7 @@ const Login = () => {
   } = useForm<FormDataType>({resolver: zodResolver(schema)});
 
   const onSubmit = (data: FormDataType) => {
+    navigation.navigate('DrawerNavigation');
     console.log('IT WORKED', data);
   };
 

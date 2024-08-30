@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React, {FC, useEffect, useState} from 'react';
+import {StyleSheet} from 'react-native';
+import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import SplashScreen from '../../screens/appIntro/SplashScreen';
 import Welcome from '../../screens/appIntro/Welcome';
@@ -8,6 +8,7 @@ import SignUp from '../../screens/authScreens/SignUp';
 import Login from '../../screens/authScreens/Login';
 import ForgotPassword from '../../screens/authScreens/ForgotPassword';
 import ChangePassword from '../../screens/authScreens/ChangePassword';
+import DrawerNavigation from './DrawerNavigation';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ const StackNavigation = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
     </Stack.Navigator>
   );
 };
