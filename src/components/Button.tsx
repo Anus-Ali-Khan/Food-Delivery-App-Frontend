@@ -1,10 +1,4 @@
-import {
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  TouchableOpacity,
-} from 'react-native';
+import {StyleSheet, Text, View, Pressable} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../utilities/constants';
 
@@ -12,6 +6,7 @@ type PropsType = {
   title: string;
   backgroundColor?: string;
   textColor?: string;
+  borderColor?: string;
 
   onPress?: () => void;
 };
@@ -20,11 +15,14 @@ const Button = ({
   title,
   backgroundColor = colors.PRIMARY,
   textColor,
+  borderColor,
   onPress,
 }: PropsType) => {
   return (
     <View>
-      <Pressable style={{...styles.button, backgroundColor}} onPress={onPress}>
+      <Pressable
+        style={{...styles.button, backgroundColor, borderColor}}
+        onPress={onPress}>
         <Text style={{...styles.text, color: textColor}}>{title}</Text>
       </Pressable>
     </View>
