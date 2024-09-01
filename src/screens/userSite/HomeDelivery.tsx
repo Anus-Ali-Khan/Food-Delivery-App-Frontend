@@ -1,42 +1,29 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {ReactNode} from 'react';
+import React from 'react';
 import {colors, fonts, RestaurantLists} from '../../utilities/constants';
 import SearchIcon from 'react-native-vector-icons/FontAwesome';
 import HamMenu from 'react-native-vector-icons/Ionicons';
-import HomeDel from '../../assets/images/homedel.svg';
-import Pickup from '../../assets/images/pickup.svg';
 import {FlatList} from 'react-native-gesture-handler';
 import RestaurantCards from '../../components/RestaurantCards';
+import Input from '../../components/Input';
 
 const Home = () => {
   return (
     <View style={styles.container}>
-      <View
-        style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          marginTop: 8,
-        }}>
-        <View style={styles.homeDelCard}>
-          <HomeDel height="80px" width="80px" />
-        </View>
-        <View style={styles.pickupCard}>
-          <Pickup height="100px" width="100px" />
-        </View>
-      </View>
-
       <View style={styles.searchBar}>
         <SearchIcon name="search" size={16} style={{color: 'black'}} />
-        <Text style={{fontFamily: fonts.PRIMARY}}>Search Restaurants</Text>
+        <Input
+          placeholder="Search Restaurants"
+          name="Search"
+          inputStyles={{padding: 0, width: '100%', borderColor: colors.PRIMARY}}
+        />
       </View>
-
       <View style={styles.titleContainer}>
         <Text style={{fontFamily: fonts.PRIMARY, fontSize: 22, color: 'black'}}>
           Restaurants
         </Text>
         <HamMenu name="menu" size={22} style={{color: colors.SECONDARY}} />
       </View>
-
       <View>
         <FlatList
           data={RestaurantLists}
@@ -64,29 +51,11 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     paddingHorizontal: 16,
   },
-  homeDelCard: {
-    backgroundColor: colors.SECONDARY,
-    width: 160,
-    height: 123,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pickupCard: {
-    width: 160,
-    height: 123,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#E6E6E6',
-  },
 
   searchBar: {
     marginVertical: 14,
-    padding: 12,
+    padding: 8,
     flexDirection: 'row',
-    gap: 4,
     alignItems: 'center',
     backgroundColor: colors.PRIMARY,
     borderRadius: 8,
@@ -94,5 +63,7 @@ const styles = StyleSheet.create({
   titleContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
   },
 });

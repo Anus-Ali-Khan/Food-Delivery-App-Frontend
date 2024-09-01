@@ -1,4 +1,10 @@
-import {StyleSheet, Text, View, Pressable} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  TouchableOpacity,
+} from 'react-native';
 import React from 'react';
 import {colors, fonts} from '../utilities/constants';
 
@@ -7,7 +13,8 @@ type PropsType = {
   backgroundColor?: string;
   textColor?: string;
   borderColor?: string;
-
+  buttonStyle?: {};
+  textStyle?: {};
   onPress?: () => void;
 };
 
@@ -16,15 +23,19 @@ const Button = ({
   backgroundColor = colors.PRIMARY,
   textColor,
   borderColor,
+  buttonStyle,
+  textStyle,
   onPress,
 }: PropsType) => {
   return (
     <View>
-      <Pressable
-        style={{...styles.button, backgroundColor, borderColor}}
+      <TouchableOpacity
+        style={{...styles.button, backgroundColor, borderColor, ...buttonStyle}}
         onPress={onPress}>
-        <Text style={{...styles.text, color: textColor}}>{title}</Text>
-      </Pressable>
+        <Text style={{...styles.text, color: textColor, ...textStyle}}>
+          {title}
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -35,7 +46,7 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.PRIMARY,
     padding: 10,
-    marginHorizontal: 16,
+    // marginHorizontal: 16,
     borderRadius: 6,
     borderColor: colors.PRIMARY,
     borderWidth: 2,

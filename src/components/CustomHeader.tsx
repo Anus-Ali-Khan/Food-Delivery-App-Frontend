@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {fonts} from '../utilities/constants';
 import LocationSvg from '../assets/images/location.svg';
-import LocationMap from '../assets/images/locationmap.svg';
+import LocationMapSvg from '../assets/images/locationmap.svg';
 
 const CustomHeader = () => {
   return (
@@ -12,7 +12,7 @@ const CustomHeader = () => {
         <Text style={styles.text}>Main 33rd Street, Gulistan-e-Johar</Text>
       </View>
       <View style={{marginRight: -6}}>
-        <LocationMap height="20px" width="20px" />
+        <LocationMapSvg height="20px" width="20px" />
       </View>
     </View>
   );

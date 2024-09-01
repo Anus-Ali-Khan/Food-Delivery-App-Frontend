@@ -7,10 +7,11 @@ import FeatherIcons from 'react-native-vector-icons/Feather';
 type PropsType = {
   placeholder: string;
   secureTextEntry?: boolean;
-  onChangeText: () => void;
-  value: string;
-  errors: {[key: string]: {message?: string}};
-  name: string;
+  onChangeText?: () => void;
+  value?: string;
+  inputStyles?: {};
+  errors?: {[key: string]: {message?: string}};
+  name?: string;
 };
 
 const Input = ({
@@ -18,6 +19,7 @@ const Input = ({
   secureTextEntry = false,
   onChangeText,
   value,
+  inputStyles,
   errors,
   name,
 }: PropsType) => {
@@ -36,11 +38,12 @@ const Input = ({
         style={[
           styles.input,
           {borderColor: isFocused ? `${colors.PRIMARY}` : '#DADADA'},
+          {...inputStyles},
         ]}
       />
-      {errors[name] && (
+      {errors?.[name ?? ''] && (
         <Text style={{color: 'red', fontFamily: fonts.PRIMARY}}>
-          {errors[name]?.message}
+          {errors[name ?? '']?.message}
         </Text>
       )}
       {secureTextEntry &&
