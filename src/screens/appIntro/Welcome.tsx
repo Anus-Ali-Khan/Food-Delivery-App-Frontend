@@ -3,15 +3,14 @@ import React from 'react';
 import Button from '../../components/Button';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {fonts} from '../../utilities/constants';
+import {colors, fonts} from '../../utilities/constants';
+import Images from '../../images/Images';
 
 const Welcome = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../../assets/images/Deliveryboy.png')}
-        style={styles.image}>
+      <ImageBackground source={Images.body.deliveryboy} style={styles.image}>
         <View style={styles.content}>
           <Text style={styles.text}>Welcome To Our</Text>
           <Text style={styles.extraText}>Delivery App</Text>
@@ -19,6 +18,8 @@ const Welcome = () => {
             <Button
               title={'Continue as a User'}
               onPress={() => navigation.navigate('OnBoarding')}
+              borderColor={colors.PRIMARY}
+              buttonStyle={styles.buttons}
             />
             <View style={styles.dividerContainer}>
               <View style={styles.divider}></View>
@@ -27,7 +28,11 @@ const Welcome = () => {
               </Text>
               <View style={styles.divider}></View>
             </View>
-            <Button title={'Continue as a Vendor'} />
+            <Button
+              title={'Continue as a Vendor'}
+              borderColor={colors.PRIMARY}
+              buttonStyle={styles.buttons}
+            />
           </View>
         </View>
       </ImageBackground>
@@ -76,5 +81,8 @@ const styles = StyleSheet.create({
     height: 2,
     backgroundColor: 'white',
     width: '38%',
+  },
+  buttons: {
+    marginHorizontal: 16,
   },
 });

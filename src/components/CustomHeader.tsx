@@ -1,8 +1,8 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {fonts} from '../utilities/constants';
-import LocationSvg from '../assets/images/location.svg';
-import LocationMapSvg from '../assets/images/locationmap.svg';
+import LocationSvg from '../images/location.svg';
+import LocationMapSvg from '../images/locationmap.svg';
 
 const CustomHeader = () => {
   return (

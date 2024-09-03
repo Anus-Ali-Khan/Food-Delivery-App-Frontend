@@ -93,7 +93,12 @@ const Login = () => {
           </Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Button title="Login" onPress={handleSubmit(onSubmit)} />
+          <Button
+            title="Login"
+            onPress={handleSubmit(onSubmit)}
+            borderColor={colors.PRIMARY}
+            buttonStyle={styles.buttons}
+          />
           <Text
             style={{margin: 'auto', width: '70%', fontFamily: fonts.PRIMARY}}>
             Don't have an account?{' '}
@@ -133,5 +138,8 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     gap: 10,
+  },
+  buttons: {
+    marginHorizontal: 16,
   },
 });

@@ -1,8 +1,8 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import HomeDel from '../../assets/images/homedel.svg';
-import Pickup from '../../assets/images/pickup.svg';
+import HomeDel from '../../images/homedel.svg';
+import Pickup from '../../images/pickup.svg';
 import HomeDelivery from '../../screens/userSite/HomeDelivery';
 import PickupScreen from '../../screens/userSite/PickupScreen';
 import {colors} from '../../utilities/constants';
@@ -51,6 +51,7 @@ const DeliveryOptions = () => {
       }}>
       {tabScreens.map(tab => (
         <TouchableOpacity
+          key={tab.name}
           style={[
             styles.tabStyles,
             {
@@ -78,6 +79,7 @@ const TopTabNavigation = () => {
         <Tab.Screen
           name={screen.name}
           component={screen.component}
+          key={screen.name}
           // options={{swipeEnabled: false}}
         />
       ))}

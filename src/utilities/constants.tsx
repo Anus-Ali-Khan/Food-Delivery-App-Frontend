@@ -1,5 +1,5 @@
 import {ReactNode} from 'react';
-import RestaurantLogo from '../assets/images/restaurantImage.svg';
+import RestaurantLogo from '../images/restaurantImage.svg';
 
 type ColorTypes = {
   [key: string]: string;

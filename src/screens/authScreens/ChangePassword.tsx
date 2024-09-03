@@ -70,7 +70,12 @@ const ChangePassword = () => {
           />
         </View>
         <View style={styles.buttonContainer}>
-          <Button title="Change Password" onPress={handleSubmit(onSubmit)} />
+          <Button
+            title="Change Password"
+            onPress={handleSubmit(onSubmit)}
+            borderColor={colors.PRIMARY}
+            buttonStyle={styles.buttons}
+          />
         </View>
       </ScrollView>
     </View>
@@ -100,5 +105,8 @@ const styles = StyleSheet.create({
 
   buttonContainer: {
     gap: 10,
+  },
+  buttons: {
+    marginHorizontal: 16,
   },
 });

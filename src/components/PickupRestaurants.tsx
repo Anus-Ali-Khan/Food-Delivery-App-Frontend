@@ -1,8 +1,10 @@
 import {ImageBackground, StyleSheet, Text, View} from 'react-native';
 import React, {ReactNode} from 'react';
-import PickupRestaurantsSvg from '../assets/images/pickuprest.svg';
 import Button from './Button';
 import {colors, fonts} from '../utilities/constants';
+import Images from '../images/Images';
+import LinearGradient from 'react-native-linear-gradient';
+import {useNavigation} from '@react-navigation/native';
 
 type PickupRestauarntCardProps = {
   id: string;
@@ -19,29 +21,44 @@ const PickupRestaurants = ({
   rating,
 }: //   img,
 PickupRestauarntCardProps) => {
+  const navigation = useNavigation();
+
+  const handleNavigateToProfileDetails = () => {
+    // navigation.navigate('');
+  };
+
   return (
     <View style={styles.cardContainer}>
-      <PickupRestaurantsSvg width="100%" />
+      <ImageBackground source={Images.body.pickupCard} style={styles.image}>
+        {/* <LinearGradient
+          colors={['black', 'gray', 'white']}
+          start={{x: 1, y: 1}}
+          end={{x: 0, y: 0}}
+          style={{width: '100%', height: 200, opacity: 0.2}}> */}
+        <View
+          style={{
+            backgroundColor: 'black',
+            height: 180,
+            opacity: 0.2,
+            width: '100%',
+            position: 'absolute',
+          }}></View>
+        {/* </LinearGradient> */}
 
-      <View
-        style={{
-          position: 'absolute',
-          bottom: 24,
-          paddingHorizontal: 16,
-        }}>
         <View
           style={{
             flexDirection: 'row',
-            justifyContent: 'space-between',
             alignItems: 'center',
-            width: '100%',
+            justifyContent: 'space-between',
+            padding: 16,
           }}>
-          {/* <View style={{backgroundColor: 'black', width: 100, opacity: }}>
-            <Text>hkljkjk</Text>
-          </View> */}
-          <View style={{flexDirection: 'column'}}>
+          <View
+            style={{
+              flexDirection: 'column',
+              alignItems: 'center',
+            }}>
             <Text style={styles.title}>{title}</Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
               <Text style={styles.description}>{description}</Text>
               <Text style={styles.rating}>{rating}</Text>
             </View>
@@ -53,9 +70,10 @@ PickupRestauarntCardProps) => {
             borderColor={colors.SECONDARY}
             buttonStyle={styles.button}
             textStyle={styles.text}
+            onPress={handleNavigateToProfileDetails}
           />
         </View>
-      </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -64,11 +82,14 @@ export default PickupRestaurants;
 
 const styles = StyleSheet.create({
   cardContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    // backgroundColor: 'red',
-    marginBottom: 16,
-    // height: 190,
+    marginBottom: 20,
+    borderRadius: 30,
+  },
+  image: {
+    width: '100%',
+    height: 180,
+    resizeMode: 'cover',
+    justifyContent: 'flex-end',
   },
   title: {
     fontFamily: fonts.SECONDARY,

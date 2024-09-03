@@ -3,7 +3,7 @@ import React from 'react';
 import {colors, fonts, RestaurantLists} from '../../utilities/constants';
 import SearchIcon from 'react-native-vector-icons/FontAwesome';
 import Input from '../../components/Input';
-import Menu from '../../assets/images/menu.svg';
+import Menu from '../../images/menu.svg';
 import PickupRestaurants from '../../components/PickupRestaurants';
 
 const PickupScreen = () => {

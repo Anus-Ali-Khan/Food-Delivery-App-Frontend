@@ -61,7 +61,12 @@ const ForgotPassword = () => {
           </Text>
         </View>
         <View style={{justifyContent: 'flex-end'}}>
-          <Button title="Verify Email" onPress={handleNavigate} />
+          <Button
+            title="Verify Email"
+            onPress={handleNavigate}
+            borderColor={colors.PRIMARY}
+            buttonStyle={styles.buttons}
+          />
         </View>
       </ScrollView>
     </View>
@@ -86,5 +91,8 @@ const styles = StyleSheet.create({
   inputContainer: {
     marginHorizontal: 'auto',
     width: '85%',
+  },
+  buttons: {
+    marginHorizontal: 16,
   },
 });

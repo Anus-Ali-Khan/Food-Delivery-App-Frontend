@@ -3,23 +3,31 @@ import React from 'react';
 import Button from '../../components/Button';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {fonts} from '../../utilities/constants';
+import {colors, fonts} from '../../utilities/constants';
+import Images from '../../images/Images';
 
 const OnBoarding = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   return (
     <ImageBackground
-      source={require('../../assets/images/OnBoarding.png')}
+      source={Images.body.onBoarding}
       style={styles.backgroundImage}>
       <View style={styles.content}>
         <Text style={styles.text}>Order cravings in</Text>
         <Text style={styles.extraText}>Delivery app</Text>
-        <Button title="Sign Up" onPress={() => navigation.navigate('SignUp')} />
+        <Button
+          title="Sign Up"
+          onPress={() => navigation.navigate('SignUp')}
+          borderColor={colors.PRIMARY}
+          buttonStyle={styles.buttons}
+        />
         <Button
           title="Already have an Account"
           backgroundColor="transparent"
           textColor="white"
+          borderColor={colors.PRIMARY}
+          buttonStyle={styles.buttons}
         />
       </View>
     </ImageBackground>
@@ -51,5 +59,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 70,
     fontFamily: 'MrsSheppards-Regular',
+  },
+  buttons: {
+    marginHorizontal: 16,
   },
 });

@@ -4,6 +4,7 @@ import {colors} from '../../utilities/constants';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import Welcome from './Welcome';
 import {StackNavigationProp} from '@react-navigation/stack';
+import Images from '../../images/Images';
 
 const SplashScreen = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
@@ -15,10 +16,7 @@ const SplashScreen = () => {
   }, []);
   return (
     <View style={styles.container}>
-      <Image
-        source={require('../../assets/images/logo.png')}
-        style={styles.logo}
-      />
+      <Image source={Images.logo} style={styles.logo} />
     </View>
   );
 };
