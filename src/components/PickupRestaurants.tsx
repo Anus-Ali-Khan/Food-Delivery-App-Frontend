@@ -3,8 +3,9 @@ import React, {ReactNode} from 'react';
 import Button from './Button';
 import {colors, fonts} from '../utilities/constants';
 import Images from '../images/Images';
-import LinearGradient from 'react-native-linear-gradient';
-import {useNavigation} from '@react-navigation/native';
+// import LinearGradient from 'react-native-linear-gradient';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type PickupRestauarntCardProps = {
   id: string;
@@ -21,10 +22,10 @@ const PickupRestaurants = ({
   rating,
 }: //   img,
 PickupRestauarntCardProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
-  const handleNavigateToProfileDetails = () => {
-    // navigation.navigate('');
+  const handleNavigateToRestaurantDetails = () => {
+    navigation.navigate('RestaurantDetails');
   };
 
   return (
@@ -70,7 +71,7 @@ PickupRestauarntCardProps) => {
             borderColor={colors.SECONDARY}
             buttonStyle={styles.button}
             textStyle={styles.text}
-            onPress={handleNavigateToProfileDetails}
+            onPress={handleNavigateToRestaurantDetails}
           />
         </View>
       </ImageBackground>

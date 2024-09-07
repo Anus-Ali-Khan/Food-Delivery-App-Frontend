@@ -9,6 +9,7 @@ import Login from '../../screens/authScreens/Login';
 import ForgotPassword from '../../screens/authScreens/ForgotPassword';
 import ChangePassword from '../../screens/authScreens/ChangePassword';
 import DrawerNavigation from './DrawerNavigation';
+import RestaurantDetails from '../../screens/userSite/RestaurantDetails';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const StackNavigation = () => {
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
+      <Stack.Screen name="RestaurantDetails" component={RestaurantDetails} />
     </Stack.Navigator>
   );
 };

@@ -1,5 +1,8 @@
 import {ReactNode} from 'react';
 import RestaurantLogo from '../images/restaurantImage.svg';
+import SliderImage1 from '../images/sliderImage1.svg';
+import Images from '../images/Images';
+import {ImageSourcePropType} from 'react-native';
 
 type ColorTypes = {
   [key: string]: string;
@@ -15,6 +18,11 @@ type RestaurantListTypes = {
   description: string;
   rating: string;
   img: ReactNode;
+};
+
+type CarouselImages = {
+  id: string;
+  img: ImageSourcePropType;
 };
 
 export const colors: ColorTypes = {
@@ -98,5 +106,24 @@ export const RestaurantLists: RestaurantListTypes[] = [
     description: 'Deliver in 30mins',
     rating: '⭐4.1',
     img: <RestaurantLogo height="50px" width="54px" />,
+  },
+];
+
+export const CarouselImagesList: CarouselImages[] = [
+  {
+    id: '1',
+    img: Images.body.sliderImage1,
+  },
+  {
+    id: '2',
+    img: Images.body.sliderImage2,
+  },
+  {
+    id: '3',
+    img: Images.body.sliderImage3,
+  },
+  {
+    id: '4',
+    img: Images.body.sliderImage4,
   },
 ];
