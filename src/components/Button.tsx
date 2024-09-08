@@ -15,6 +15,7 @@ type PropsType = {
   borderColor?: string;
   buttonStyle?: {};
   textStyle?: {};
+  style?: {};
   onPress?: () => void;
 };
 
@@ -26,11 +27,18 @@ const Button = ({
   buttonStyle,
   textStyle,
   onPress,
+  style,
 }: PropsType) => {
   return (
     <View>
       <TouchableOpacity
-        style={{...styles.button, backgroundColor, borderColor, ...buttonStyle}}
+        style={{
+          ...styles.button,
+          backgroundColor,
+          borderColor,
+          ...buttonStyle,
+          ...style,
+        }}
         onPress={onPress}>
         <Text style={{...styles.text, color: textColor, ...textStyle}}>
           {title}

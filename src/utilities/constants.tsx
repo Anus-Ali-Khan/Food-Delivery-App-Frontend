@@ -1,8 +1,10 @@
 import {ReactNode} from 'react';
 import RestaurantLogo from '../images/restaurantImage.svg';
-import SliderImage1 from '../images/sliderImage1.svg';
 import Images from '../images/Images';
 import {ImageSourcePropType} from 'react-native';
+import DollarSvg from '../images/usd-circle.svg';
+import TimeSvg from '../images/time.svg';
+import DeliverySvg from '../images/Delivery.svg';
 
 type ColorTypes = {
   [key: string]: string;
@@ -23,6 +25,13 @@ type RestaurantListTypes = {
 type CarouselImages = {
   id: string;
   img: ImageSourcePropType;
+};
+
+type timelineTypes = {
+  // time: string;
+  title: string;
+  icon: ReactNode;
+  description: string;
 };
 
 export const colors: ColorTypes = {
@@ -125,5 +134,26 @@ export const CarouselImagesList: CarouselImages[] = [
   {
     id: '4',
     img: Images.body.sliderImage4,
+  },
+];
+
+export const timelineData: timelineTypes[] = [
+  {
+    // time: '09:00',
+    title: 'Minimum Order',
+    icon: <DollarSvg />,
+    description: '0.0 SAR',
+  },
+  {
+    // time: '09:30',
+    title: 'Delivery Time',
+    icon: <TimeSvg />,
+    description: '30.0 mins',
+  },
+  {
+    // time: '10:00',
+    title: 'Delivery Charges',
+    icon: <DeliverySvg />,
+    description: '0.0 SAR',
   },
 ];
