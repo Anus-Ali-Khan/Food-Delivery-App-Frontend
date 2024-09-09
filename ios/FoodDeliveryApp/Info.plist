@@ -50,8 +50,7 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>MrsSheppards-Regular.ttf</string>
-		<string>Urbanist-Italic-VariableFont_wght.ttf</string>
-		<string>Urbanist-VariableFont_wght.ttf</string>
+		<string>Urbanist-Medium.ttf</string>
 	</array>
 </dict>
 </plist>

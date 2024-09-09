@@ -10,6 +10,9 @@ import ForgotPassword from '../../screens/authScreens/ForgotPassword';
 import ChangePassword from '../../screens/authScreens/ChangePassword';
 import DrawerNavigation from './DrawerNavigation';
 import RestaurantDetails from '../../screens/userSite/RestaurantDetails';
+import Reviews from '../../screens/userSite/Reviews';
+import CustomStackHeader from '../CustomStackHeader';
+import BackArrowIcon from 'react-native-vector-icons/AntDesign';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +30,23 @@ const StackNavigation = () => {
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
       <Stack.Screen name="DrawerNavigation" component={DrawerNavigation} />
       <Stack.Screen name="RestaurantDetails" component={RestaurantDetails} />
+      <Stack.Screen
+        name="Reviews"
+        component={Reviews}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                title="Reviews"
+                icon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+              />
+            );
+          },
+        }}
+      />
     </Stack.Navigator>
   );
 };

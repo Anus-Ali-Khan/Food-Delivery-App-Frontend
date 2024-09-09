@@ -7,6 +7,8 @@ import TabSvg from '../../images/tab.svg';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import Timeline from 'react-native-timeline-flatlist';
 import Button from '../../components/Button';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const data = [
   {
@@ -19,6 +21,11 @@ const data = [
 ];
 
 const RestaurantDetails = () => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
+  const handleNavigateToReviews = () => {
+    navigation.navigate('Reviews');
+  };
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <Slider />
@@ -43,7 +50,11 @@ const RestaurantDetails = () => {
                 <View
                   style={{flexDirection: 'row', alignItems: 'center', gap: 6}}>
                   <Text style={styles.rating}>{item.rating}</Text>
-                  <Text style={styles.reviews}>{item.reviews}</Text>
+                  <Text
+                    style={styles.reviews}
+                    onPress={handleNavigateToReviews}>
+                    {item.reviews}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -51,7 +62,7 @@ const RestaurantDetails = () => {
           </View>
         ))}
       </View>
-      <View style={{paddingHorizontal: 18, marginTop: 24}}>
+      <View style={{paddingHorizontal: 18, marginTop: 18}}>
         <Text style={styles.titles}>Address</Text>
         <Text style={styles.paraText}>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nam
@@ -78,7 +89,6 @@ const RestaurantDetails = () => {
       <View
         style={{
           flex: 1,
-          // backgroundColor: 'red',
           marginTop: 8,
         }}>
         <Timeline
