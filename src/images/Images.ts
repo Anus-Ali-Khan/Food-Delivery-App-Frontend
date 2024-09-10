@@ -13,5 +13,6 @@ export default {
     sliderImage2: require('./sliderImage2.png'),
     sliderImage3: require('./sliderImage3.jpg'),
     sliderImage4: require('./sliderImage4.png'),
+    profilePic: require('./profilePic.png'),
   },
 };

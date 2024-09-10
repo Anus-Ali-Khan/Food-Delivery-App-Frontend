@@ -34,6 +34,22 @@ type timelineTypes = {
   description: string;
 };
 
+type RatingTypes = {
+  logo: ImageSourcePropType;
+  title: string;
+  stars: string;
+  reviews: number;
+  rating: number;
+};
+
+type reviewsTypes = {
+  id: string;
+  profilePic: ImageSourcePropType;
+  name: string;
+  ratingStars: string;
+  reviewDescription: string;
+};
+
 export const colors: ColorTypes = {
   PRIMARY: '#FFB803',
   SECONDARY: '#721A16',
@@ -43,6 +59,7 @@ export const colors: ColorTypes = {
 export const fonts: fontTypes = {
   PRIMARY: 'Urbanist-VariableFont_wght',
   SECONDARY: 'Urbanist-Medium',
+  TERTIARY: 'Urbanist-SemiBold',
 };
 
 export const RestaurantLists: RestaurantListTypes[] = [
@@ -155,5 +172,40 @@ export const timelineData: timelineTypes[] = [
     title: 'Delivery Charges',
     icon: <DeliverySvg />,
     description: '0.0 SAR',
+  },
+];
+
+export const ratings: RatingTypes = {
+  logo: Images.body.ThaiCuisineLogo,
+  title: 'Thai Cuisine Ratings',
+  stars: '⭐⭐⭐⭐⭐',
+  reviews: 60,
+  rating: 4.3,
+};
+
+export const reviewList: reviewsTypes[] = [
+  {
+    id: '1',
+    profilePic: Images.body.profilePic,
+    name: 'Abu Malik',
+    ratingStars: '⭐⭐⭐⭐⭐',
+    reviewDescription:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+  },
+  {
+    id: '2',
+    profilePic: Images.body.profilePic,
+    name: 'Abu Malik',
+    ratingStars: '⭐⭐⭐⭐⭐',
+    reviewDescription:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+  },
+  {
+    id: '3',
+    profilePic: Images.body.profilePic,
+    name: 'Abu Malik',
+    ratingStars: '⭐⭐⭐⭐⭐',
+    reviewDescription:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
   },
 ];
