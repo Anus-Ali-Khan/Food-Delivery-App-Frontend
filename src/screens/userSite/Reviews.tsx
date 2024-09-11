@@ -1,19 +1,23 @@
-import {
-  FlatList,
-  ImageSourcePropType,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import React, {ReactNode} from 'react';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import Images from '../../images/Images';
 import {Image} from 'react-native';
 import {colors, fonts, ratings, reviewList} from '../../utilities/constants';
 import {ScrollView} from 'react-native-gesture-handler';
+import Button from '../../components/Button';
+import ReviewModal from '../../components/ReviewModal';
+import CustomModal from '../../components/CustomModal';
 
 const Reviews = () => {
+  const [openReviewModal, setOpenReviewModal] = useState<boolean>(false);
+
   return (
-    <View style={{flex: 1, backgroundColor: 'white', marginTop: 8}}>
+    <View
+      style={{
+        flex: 1,
+        backgroundColor: 'white',
+        marginTop: 8,
+      }}>
       <ScrollView>
         <View style={styles.headerContainer}>
           <View style={{flexDirection: 'row', alignItems: 'center', gap: 6}}>
@@ -44,7 +48,6 @@ const Reviews = () => {
                   style={{
                     paddingVertical: 16,
                     paddingHorizontal: 16,
-                    // backgroundColor: 'red',
                   }}>
                   <View
                     style={{
@@ -91,7 +94,6 @@ const Reviews = () => {
                   style={{
                     paddingVertical: 16,
                     paddingHorizontal: 16,
-                    // backgroundColor: 'red',
                   }}>
                   <View
                     style={{
@@ -125,6 +127,23 @@ const Reviews = () => {
           />
         </View>
       </ScrollView>
+      <Button
+        title="+"
+        onPress={() => setOpenReviewModal(prev => !prev)}
+        borderColor="transparent"
+        textColor={`${colors.SECONDARY}`}
+        style={{
+          position: 'absolute',
+          bottom: 32,
+          right: 20,
+          paddingVertical: 3,
+          paddingHorizontal: 12,
+        }}
+        textStyle={{fontWeight: '700', fontSize: 22}}
+      />
+      <CustomModal isOpen={openReviewModal}>
+        <ReviewModal />
+      </CustomModal>
     </View>
   );
 };
