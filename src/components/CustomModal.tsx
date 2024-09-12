@@ -1,21 +1,20 @@
 import {Modal as RNModal, StyleSheet, Text, View} from 'react-native';
 import React, {PropsWithChildren, ReactElement} from 'react';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface ModalPropsType extends PropsWithChildren {
   children: ReactElement;
   isOpen: boolean;
 }
 
-const CustomModal = ({isOpen, children, ...rest}: ModalPropsType) => {
+const CustomModal = ({isOpen, children}: ModalPropsType) => {
   return (
     <RNModal
       visible={isOpen}
-      transparent
+      transparent={true}
       animationType="fade"
-      statusBarTranslucent
-      style={styles.modalContainer}
-      {...rest}>
-      {children}
+      statusBarTranslucent={true}>
+      <View style={styles.modalContainer}>{children}</View>
     </RNModal>
   );
 };
@@ -24,11 +23,9 @@ export default CustomModal;
 
 const styles = StyleSheet.create({
   modalContainer: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    flex: 1,
-    paddingHorizontal: 3,
-    backgroundColor: '#EBEBEB',
-    opacity: 40,
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
 });

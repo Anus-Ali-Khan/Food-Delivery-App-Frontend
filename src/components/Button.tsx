@@ -24,21 +24,19 @@ const Button = ({
   style,
 }: PropsType) => {
   return (
-    <View>
-      <TouchableOpacity
-        style={{
-          ...styles.button,
-          backgroundColor,
-          borderColor,
-          ...buttonStyle,
-          ...style,
-        }}
-        onPress={onPress}>
-        <Text style={{...styles.text, color: textColor, ...textStyle}}>
-          {title}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity
+      style={{
+        ...styles.button,
+        backgroundColor,
+        borderColor,
+        ...buttonStyle,
+        ...style,
+      }}
+      onPress={onPress}>
+      <Text style={{...styles.text, color: textColor, ...textStyle}}>
+        {title}
+      </Text>
+    </TouchableOpacity>
   );
 };
 

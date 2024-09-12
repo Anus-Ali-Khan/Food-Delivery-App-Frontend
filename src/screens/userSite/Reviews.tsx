@@ -129,7 +129,7 @@ const Reviews = () => {
       </ScrollView>
       <Button
         title="+"
-        onPress={() => setOpenReviewModal(prev => !prev)}
+        onPress={() => setOpenReviewModal(true)}
         borderColor="transparent"
         textColor={`${colors.SECONDARY}`}
         style={{
@@ -142,7 +142,7 @@ const Reviews = () => {
         textStyle={{fontWeight: '700', fontSize: 22}}
       />
       <CustomModal isOpen={openReviewModal}>
-        <ReviewModal />
+        <ReviewModal setOpenReviewModal={setOpenReviewModal} />
       </CustomModal>
     </View>
   );
