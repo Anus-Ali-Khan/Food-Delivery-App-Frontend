@@ -2,6 +2,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {ReactNode} from 'react';
 import Button from './Button';
 import {colors, fonts} from '../utilities/constants';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type RestaurantCardProps = {
   id: string;
@@ -18,6 +20,8 @@ const RestaurantCards = ({
   rating,
   img,
 }: RestaurantCardProps) => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
@@ -44,6 +48,7 @@ const RestaurantCards = ({
         borderColor={colors.SECONDARY}
         buttonStyle={styles.button}
         textStyle={styles.text}
+        onPress={() => navigation.navigate('ViewMenu')}
       />
     </View>
   );

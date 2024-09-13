@@ -1,4 +1,10 @@
-import {ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import React, {ReactNode} from 'react';
 import Button from './Button';
 import {colors, fonts} from '../utilities/constants';
@@ -29,7 +35,9 @@ PickupRestauarntCardProps) => {
   };
 
   return (
-    <View style={styles.cardContainer}>
+    <TouchableOpacity
+      style={styles.cardContainer}
+      onPress={handleNavigateToRestaurantDetails}>
       <ImageBackground source={Images.body.pickupCard} style={styles.image}>
         {/* <LinearGradient
           colors={['black', 'gray', 'white']}
@@ -71,11 +79,11 @@ PickupRestauarntCardProps) => {
             borderColor={colors.SECONDARY}
             buttonStyle={styles.button}
             textStyle={styles.text}
-            onPress={handleNavigateToRestaurantDetails}
+            onPress={() => navigation.navigate('ViewMenu')}
           />
         </View>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   );
 };
 

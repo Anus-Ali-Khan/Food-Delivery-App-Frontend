@@ -5,24 +5,39 @@ import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 
 type HeaderPropsType = {
-  icon: ReactNode;
+  backIcon: ReactNode;
   title: string;
+  headerIcon?: ReactNode;
+  cartIcon?: ReactNode;
 };
 
-const CustomStackHeader = ({icon, title}: HeaderPropsType) => {
+const CustomStackHeader = ({
+  backIcon,
+  headerIcon,
+  title,
+  cartIcon,
+}: HeaderPropsType) => {
   7;
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const handleNavigateBack = () => {
-    navigation.navigate('RestaurantDetails');
+    navigation.navigate('Home');
   };
 
   return (
-    <View style={styles.headerContainer}>
-      <TouchableOpacity onPress={handleNavigateBack}>{icon}</TouchableOpacity>
-      <View style={styles.titleContainer}>
+    <View
+      style={[
+        styles.headerContainer,
+        {justifyContent: cartIcon ? 'space-between' : 'center'},
+      ]}>
+      <TouchableOpacity onPress={handleNavigateBack}>
+        {backIcon}
+      </TouchableOpacity>
+      <View style={[styles.titleContainer, {width: !cartIcon ? '88%' : null}]}>
+        {headerIcon}
         <Text style={styles.title}>{title}</Text>
       </View>
+      {cartIcon}
     </View>
   );
 };
@@ -41,12 +56,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.SECONDARY,
-    fontSize: 16,
+    fontSize: 14,
     color: 'black',
   },
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: '88%',
+    flexDirection: 'row',
+    gap: 2,
   },
 });

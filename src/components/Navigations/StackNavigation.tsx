@@ -13,6 +13,10 @@ import RestaurantDetails from '../../screens/userSite/RestaurantDetails';
 import Reviews from '../../screens/userSite/Reviews';
 import CustomStackHeader from '../CustomStackHeader';
 import BackArrowIcon from 'react-native-vector-icons/AntDesign';
+import ViewMenu from '../../screens/userSite/ViewMenu';
+import LocationSvg from '../../images/location.svg';
+import CartSvg from '../../images/cartIcon.svg';
+import MenuScreenTopTabs from './MenuScreenTopTabs';
 
 const Stack = createStackNavigator();
 
@@ -39,9 +43,28 @@ const StackNavigation = () => {
             return (
               <CustomStackHeader
                 title="Reviews"
-                icon={
+                backIcon={
                   <BackArrowIcon name="arrowleft" size={16} color={'black'} />
                 }
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="ViewMenu"
+        component={MenuScreenTopTabs}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                headerIcon={<LocationSvg height="15px" width="15px" />}
+                title="Main 33rd Street, Gulistan-e-Johar"
+                cartIcon={<CartSvg height="15px" width="15px" />}
               />
             );
           },
