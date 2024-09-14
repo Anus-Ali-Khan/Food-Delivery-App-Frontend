@@ -1,8 +1,9 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import CategoriesTab from '../CategoriesTab';
 import DealsTab from '../DealsTab';
+import CustomTopTabBar from '../CustomTopTabBar';
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -24,9 +25,11 @@ const tabScreens = [
 
 const MenuScreenTopTabs = () => {
   return (
-    <Tab.Navigator initialRouteName={tabsType.Tab1}>
+    <Tab.Navigator
+      initialRouteName={tabsType.Tab1}
+      tabBar={props => <CustomTopTabBar {...props} />}>
       {tabScreens.map(tab => (
-        <Tab.Screen name={tab.name} component={tab.component} key={tab.name} />
+        <Tab.Screen key={tab.name} name={tab.name} component={tab.component} />
       ))}
     </Tab.Navigator>
   );
