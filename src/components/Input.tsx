@@ -46,6 +46,7 @@ const Input = ({
           {errors[name ?? '']?.message}
         </Text>
       )}
+
       {secureTextEntry &&
         (showPassword ? (
           <FeatherIcons

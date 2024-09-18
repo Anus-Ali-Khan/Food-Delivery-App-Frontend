@@ -1,19 +1,20 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
-import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import {
+  createMaterialTopTabNavigator,
+  MaterialTopTabBarProps,
+} from '@react-navigation/material-top-tabs';
 import HomeDel from '../../images/homedel.svg';
 import Pickup from '../../images/pickup.svg';
 import HomeDelivery from '../../screens/userSite/HomeDelivery';
 import PickupScreen from '../../screens/userSite/PickupScreen';
-import {colors} from '../../utilities/constants';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
-import {StackNavigationProp} from '@react-navigation/stack';
+import {colors, fonts} from '../../utilities/constants';
 
 const Tab = createMaterialTopTabNavigator();
 
 enum tabsType {
-  HomeDelivery = 'HomeDelivery',
-  Pickup = 'Pickup',
+  HomeDelivery = 'Home Delivery',
+  Pickup = 'Pick up',
 }
 
 const tabScreens = [
@@ -25,21 +26,11 @@ const tabScreens = [
   {
     name: tabsType.Pickup,
     component: PickupScreen,
-    img: <Pickup height="100px" width="100px" />,
+    img: <Pickup height="80px" width="80px" />,
   },
 ];
 
-const DeliveryOptions = () => {
-  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const [selectedTab, setSelectedTab] = useState<tabsType>(
-    tabsType.HomeDelivery,
-  );
-
-  const handleNavigation = (name: tabsType) => {
-    setSelectedTab(name);
-    navigation.navigate(name);
-  };
-
+const DeliveryOptions = ({state, navigation}: MaterialTopTabBarProps) => {
   return (
     <View
       style={{
@@ -48,21 +39,54 @@ const DeliveryOptions = () => {
         paddingTop: 8,
         paddingHorizontal: 16,
         backgroundColor: 'white',
+        gap: 8,
       }}>
-      {tabScreens.map(tab => (
-        <TouchableOpacity
-          key={tab.name}
-          style={[
-            styles.tabStyles,
-            {
-              backgroundColor:
-                selectedTab === tab.name ? colors.SECONDARY : 'transparent',
-            },
-          ]}
-          onPress={() => handleNavigation(tab.name)}>
-          {tab.img}
-        </TouchableOpacity>
-      ))}
+      {state.routes.map((route, index) => {
+        const isFocused = state.index === index;
+        console.log(route);
+
+        const onPress = () => {
+          const event = navigation.emit({
+            type: 'tabPress',
+            target: route.key,
+            canPreventDefault: true,
+          });
+
+          if (!isFocused && !event.defaultPrevented) {
+            navigation.navigate(route.name);
+          }
+        };
+
+        return (
+          <TouchableOpacity
+            onPress={onPress}
+            style={[
+              styles.tabButton,
+              isFocused ? styles.focusedTab : styles.unfocusedTab,
+              styles.tabStyles,
+            ]}>
+            <Text
+              style={{
+                color: isFocused ? 'white' : 'black',
+                fontFamily: fonts.PRIMARY,
+              }}>
+              {route.name === 'Home Delivery' ? (
+                <HomeDel height={80} width={80} />
+              ) : (
+                <Pickup height="80px" width="80px" />
+              )}
+            </Text>
+            <Text
+              style={{
+                color: isFocused ? 'white' : 'black',
+                fontFamily: fonts.PRIMARY,
+              }}>
+              {' '}
+              {route.name}
+            </Text>
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 };
@@ -71,7 +95,7 @@ const TopTabNavigation = () => {
   return (
     <Tab.Navigator
       initialRouteName={tabsType.HomeDelivery}
-      tabBar={() => <DeliveryOptions />}
+      tabBar={props => <DeliveryOptions {...props} />}
       screenOptions={{
         tabBarShowLabel: false,
       }}>
@@ -93,10 +117,29 @@ const styles = StyleSheet.create({
   tabStyles: {
     width: 160,
     height: 123,
-    borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#E6E6E6',
+    flexDirection: 'column',
+  },
+  focusedTab: {
+    backgroundColor: colors.SECONDARY,
+  },
+  unfocusedTab: {
+    backgroundColor: '#EBEBEB',
+  },
+  tabButton: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    padding: 8,
+  },
+  tabLabel: {
+    fontFamily: fonts.SECONDARY,
+    fontSize: 18,
+    color: 'black',
   },
 });
