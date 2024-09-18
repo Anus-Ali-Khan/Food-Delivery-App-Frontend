@@ -5,6 +5,8 @@ import {ImageSourcePropType} from 'react-native';
 import DollarSvg from '../images/usd-circle.svg';
 import TimeSvg from '../images/time.svg';
 import DeliverySvg from '../images/Delivery.svg';
+import CategoriesSvg from '../images/categories.svg';
+import BurgerSvg from '../images/burgerCategory.svg';
 
 type ColorTypes = {
   [key: string]: string;
@@ -48,6 +50,19 @@ type reviewsTypes = {
   name: string;
   ratingStars: string;
   reviewDescription: string;
+};
+
+type categoriesTypes = {
+  id: string;
+  img: ReactNode;
+  name: string;
+};
+
+type cartItemsTypes = {
+  id: string;
+  img: ReactNode;
+  name: string;
+  price: string;
 };
 
 export const colors: ColorTypes = {
@@ -207,5 +222,77 @@ export const reviewList: reviewsTypes[] = [
     ratingStars: '⭐⭐⭐⭐⭐',
     reviewDescription:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text",
+  },
+];
+
+export const categories: categoriesTypes[] = [
+  {
+    id: '1',
+    img: <CategoriesSvg />,
+    name: 'Traditional',
+  },
+  {
+    id: '2',
+    img: <CategoriesSvg />,
+    name: 'International',
+  },
+  {
+    id: '3',
+    img: <CategoriesSvg />,
+    name: 'Chineese',
+  },
+  {
+    id: '4',
+    img: <CategoriesSvg />,
+    name: 'Cuisine',
+  },
+  {
+    id: '5',
+    img: <CategoriesSvg />,
+    name: 'Homemade',
+  },
+  {
+    id: '6',
+    img: <CategoriesSvg />,
+    name: 'Russian',
+  },
+];
+
+export const cartItems: cartItemsTypes[] = [
+  {
+    id: '1',
+    img: <BurgerSvg width="150px" />,
+    name: 'Zinger Burger',
+    price: '$14',
+  },
+  {
+    id: '2',
+    img: <BurgerSvg width="150px" />,
+    name: 'Pizza',
+    price: '$14',
+  },
+  {
+    id: '3',
+    img: <BurgerSvg width="150px" />,
+    name: 'Chicken Broast',
+    price: '$14',
+  },
+  {
+    id: '4',
+    img: <BurgerSvg width="150px" />,
+    name: 'Pasta',
+    price: '$14',
+  },
+  {
+    id: '5',
+    img: <BurgerSvg width="150px" />,
+    name: 'Chineese Rice',
+    price: '$14',
+  },
+  {
+    id: '6',
+    img: <BurgerSvg width="150px" />,
+    name: 'Jalepeno',
+    price: '$14',
   },
 ];

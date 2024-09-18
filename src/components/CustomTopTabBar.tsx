@@ -24,6 +24,7 @@ const CustomTopTabBar = ({state, navigation}: MaterialTopTabBarProps) => {
         return (
           <TouchableOpacity
             onPress={onPress}
+            key={route.key}
             style={[
               {flex: 1},
               styles.tabButton,

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {ReactNode, useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import {colors, fonts} from '../utilities/constants';
 import FeatherIcons from 'react-native-vector-icons/Feather';
@@ -12,6 +12,8 @@ type PropsType = {
   inputStyles?: {};
   errors?: {[key: string]: {message?: string}};
   name?: string;
+  icon?: ReactNode;
+  placeholderTextColor?: string;
 };
 
 const Input = ({
@@ -22,13 +24,17 @@ const Input = ({
   inputStyles,
   errors,
   name,
+  icon,
+  placeholderTextColor,
 }: PropsType) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(secureTextEntry);
 
   return (
     <View style={{position: 'relative'}}>
+      {icon ? icon : null}
       <TextInput
+        placeholderTextColor={placeholderTextColor}
         placeholder={placeholder}
         onFocus={() => setIsFocused(true)}
         onBlur={() => setIsFocused(false)}

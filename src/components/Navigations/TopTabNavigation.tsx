@@ -1,5 +1,5 @@
-import {Animated, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React from 'react';
 import {
   createMaterialTopTabNavigator,
   MaterialTopTabBarProps,
@@ -43,7 +43,6 @@ const DeliveryOptions = ({state, navigation}: MaterialTopTabBarProps) => {
       }}>
       {state.routes.map((route, index) => {
         const isFocused = state.index === index;
-        console.log(route);
 
         const onPress = () => {
           const event = navigation.emit({
@@ -60,6 +59,7 @@ const DeliveryOptions = ({state, navigation}: MaterialTopTabBarProps) => {
         return (
           <TouchableOpacity
             onPress={onPress}
+            key={route.key}
             style={[
               styles.tabButton,
               isFocused ? styles.focusedTab : styles.unfocusedTab,
@@ -81,7 +81,6 @@ const DeliveryOptions = ({state, navigation}: MaterialTopTabBarProps) => {
                 color: isFocused ? 'white' : 'black',
                 fontFamily: fonts.PRIMARY,
               }}>
-              {' '}
               {route.name}
             </Text>
           </TouchableOpacity>
