@@ -58,7 +58,7 @@ type categoriesTypes = {
   name: string;
 };
 
-type cartItemsTypes = {
+export type cartItemsTypes = {
   id: string;
   img: ReactNode;
   name: string;
