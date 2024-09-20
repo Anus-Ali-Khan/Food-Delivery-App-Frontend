@@ -73,6 +73,12 @@ export type DealsTypes = {
   price: string;
 };
 
+export type CartItemTypes = {
+  id: string;
+  title: string;
+  img: ImageSourcePropType;
+};
+
 export const colors: ColorTypes = {
   PRIMARY: '#FFB803',
   SECONDARY: '#721A16',
@@ -371,5 +377,20 @@ export const dealsList: DealsTypes[] = [
       {name: 'Hot Chicken Samosas', quantity: 'x1'},
     ],
     price: '$19',
+  },
+];
+
+export const cartItemsList: cartItemsTypes[] = [
+  {
+    id: '1',
+    name: 'Late Night Zinger Burger',
+    price: '5.99',
+    img: Images.body.LateNightZB,
+  },
+  {
+    id: '2',
+    name: 'Late Night Zinger Burger',
+    price: '6.00',
+    img: Images.body.chineese,
   },
 ];

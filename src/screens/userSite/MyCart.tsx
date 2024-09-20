@@ -1,7 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
-import {colors, fonts} from '../../utilities/constants';
+import {cartItemsList, colors, fonts} from '../../utilities/constants';
+import {FlatList} from 'react-native-gesture-handler';
 
 const restaurant = {
   id: '1',
@@ -40,6 +41,17 @@ const MyCart = () => {
       <View style={styles.headerBar}>
         <Text style={styles.headerBarTitle}>Your Order Details</Text>
       </View>
+      <FlatList
+        data={cartItemsList}
+        keyExtractor={item => item.id}
+        renderItem={({item}) => (
+          <View style={{paddingHorizontal: 16}}>
+            <Image source={item.img} style={styles.img} />
+
+            <View></View>
+          </View>
+        )}
+      />
     </View>
   );
 };
@@ -71,5 +83,11 @@ const styles = StyleSheet.create({
     backgroundColor: colors.SECONDARY,
     paddingHorizontal: 16,
     paddingVertical: 8,
+  },
+  img: {
+    height: 60,
+    width: 60,
+    resizeMode: 'center',
+    borderRadius: 16,
   },
 });

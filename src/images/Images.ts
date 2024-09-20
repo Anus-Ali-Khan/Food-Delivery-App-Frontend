@@ -16,5 +16,7 @@ export default {
     profilePic: require('./profilePic.png'),
     zingerDeals: require('./zingerdeals.jpg'),
     broastDeals: require('./broastdeal.jpg'),
+    LateNightZB: require('./latenight-zinger-burger.jpg'),
+    chineese: require('./Chineese.jpg'),
   },
 };
