@@ -6,8 +6,16 @@ import {cartItems, categories, colors, fonts} from '../utilities/constants';
 import {FlatList} from 'react-native-gesture-handler';
 import Button from './Button';
 import FoodItemsCard from './FoodItemsCard';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const CategoriesTab = () => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
+  const handleNavigateToMyCart = () => {
+    navigation.navigate('MyCart');
+  };
+
   return (
     <View style={styles.container}>
       <Input
@@ -87,7 +95,8 @@ const CategoriesTab = () => {
           backgroundColor={colors.SECONDARY}
           textColor="white"
           textStyle={{fontSize: 16}}
-          buttonStyle={{width: '40%', paddingVertical: 3}}
+          buttonStyle={{paddingVertical: 3}}
+          onPress={handleNavigateToMyCart}
         />
       </View>
     </View>

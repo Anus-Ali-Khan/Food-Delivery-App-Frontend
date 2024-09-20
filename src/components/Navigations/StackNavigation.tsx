@@ -17,6 +17,7 @@ import ViewMenu from '../../screens/userSite/ViewMenu';
 import LocationSvg from '../../images/location.svg';
 import CartSvg from '../../images/cartIcon.svg';
 import MenuScreenTopTabs from './MenuScreenTopTabs';
+import MyCart from '../../screens/userSite/MyCart';
 
 const Stack = createStackNavigator();
 
@@ -53,7 +54,7 @@ const StackNavigation = () => {
       />
       <Stack.Screen
         name="ViewMenu"
-        component={MenuScreenTopTabs}
+        component={ViewMenu}
         options={{
           headerShown: true,
           header: () => {
@@ -65,6 +66,23 @@ const StackNavigation = () => {
                 headerIcon={<LocationSvg height="15px" width="15px" />}
                 title="Main 33rd Street, Gulistan-e-Johar"
                 cartIcon={<CartSvg height="15px" width="15px" />}
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="MyCart"
+        component={MyCart}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                title="My Cart"
               />
             );
           },

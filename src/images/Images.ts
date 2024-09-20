@@ -14,5 +14,7 @@ export default {
     sliderImage3: require('./sliderImage3.jpg'),
     sliderImage4: require('./sliderImage4.png'),
     profilePic: require('./profilePic.png'),
+    zingerDeals: require('./zingerdeals.jpg'),
+    broastDeals: require('./broastdeal.jpg'),
   },
 };

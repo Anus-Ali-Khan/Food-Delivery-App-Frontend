@@ -21,7 +21,7 @@ const CustomStackHeader = ({
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const handleNavigateBack = () => {
-    navigation.navigate('Home');
+    navigation.goBack();
   };
 
   return (

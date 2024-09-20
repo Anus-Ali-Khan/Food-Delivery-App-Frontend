@@ -21,7 +21,7 @@ const Slider = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const handleNavigateBack = () => {
-    navigation.navigate('Pickup');
+    navigation.navigate('Home');
   };
 
   return (

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React from 'react';
 import {colors, fonts} from '../utilities/constants';
 import {cartItemsTypes} from '../utilities/constants';
 

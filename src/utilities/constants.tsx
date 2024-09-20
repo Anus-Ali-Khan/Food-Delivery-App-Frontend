@@ -65,6 +65,14 @@ export type cartItemsTypes = {
   price: string;
 };
 
+export type DealsTypes = {
+  id: string;
+  title: string;
+  img: ImageSourcePropType;
+  items: {name: string; quantity: string}[];
+  price: string;
+};
+
 export const colors: ColorTypes = {
   PRIMARY: '#FFB803',
   SECONDARY: '#721A16',
@@ -294,5 +302,74 @@ export const cartItems: cartItemsTypes[] = [
     img: <BurgerSvg width="150px" />,
     name: 'Jalepeno',
     price: '$14',
+  },
+];
+
+export const dealsList: DealsTypes[] = [
+  {
+    id: '1',
+    title: 'Super Savor Deal',
+    img: Images.body.sliderImage1,
+    items: [
+      {name: 'Beef Fried Sticks', quantity: 'x2'},
+      {name: 'Behari Qeema', quantity: 'x3'},
+      {name: 'Hot Chicken Samosas', quantity: 'x1'},
+    ],
+    price: '$19',
+  },
+  {
+    id: '2',
+    title: 'Super Savor Deal',
+    img: Images.body.zingerDeals,
+    items: [
+      {name: 'Beef Fried Sticks', quantity: 'x2'},
+      {name: 'Behari Qeema', quantity: 'x3'},
+      {name: 'Hot Chicken Samosas', quantity: 'x1'},
+    ],
+    price: '$19',
+  },
+  {
+    id: '3',
+    title: 'Super Savor Deal',
+    img: Images.body.broastDeals,
+    items: [
+      {name: 'Beef Fried Sticks', quantity: 'x2'},
+      {name: 'Behari Qeema', quantity: 'x3'},
+      {name: 'Hot Chicken Samosas', quantity: 'x1'},
+    ],
+    price: '$19',
+  },
+  {
+    id: '4',
+    title: 'Super Savor Deal',
+    img: Images.body.sliderImage1,
+    items: [
+      {name: 'Beef Fried Sticks', quantity: 'x2'},
+      {name: 'Behari Qeema', quantity: 'x3'},
+      {name: 'Hot Chicken Samosas', quantity: 'x1'},
+    ],
+    price: '$19',
+  },
+  {
+    id: '5',
+    title: 'Super Savor Deal',
+    img: Images.body.zingerDeals,
+    items: [
+      {name: 'Beef Fried Sticks', quantity: 'x2'},
+      {name: 'Behari Qeema', quantity: 'x3'},
+      {name: 'Hot Chicken Samosas', quantity: 'x1'},
+    ],
+    price: '$19',
+  },
+  {
+    id: '6',
+    title: 'Super Savor Deal',
+    img: Images.body.broastDeals,
+    items: [
+      {name: 'Beef Fried Sticks', quantity: 'x2'},
+      {name: 'Behari Qeema', quantity: 'x3'},
+      {name: 'Hot Chicken Samosas', quantity: 'x1'},
+    ],
+    price: '$19',
   },
 ];
