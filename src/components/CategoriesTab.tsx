@@ -1,9 +1,8 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 import Input from './Input';
 import SearchIcon from 'react-native-vector-icons/FontAwesome';
 import {cartItems, categories, colors, fonts} from '../utilities/constants';
-import {FlatList} from 'react-native-gesture-handler';
 import Button from './Button';
 import FoodItemsCard from './FoodItemsCard';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
@@ -73,7 +72,7 @@ const CategoriesTab = () => {
         numColumns={2}
         renderItem={FoodItemsCard}
         initialNumToRender={6}
-        // disableVirtualization
+        disableVirtualization
       />
       <View
         style={{

@@ -1,8 +1,7 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
 import {cartItemsList, colors, fonts} from '../../utilities/constants';
-import {FlatList} from 'react-native-gesture-handler';
 
 const restaurant = {
   id: '1',
@@ -46,8 +45,7 @@ const MyCart = () => {
         keyExtractor={item => item.id}
         renderItem={({item}) => (
           <View style={{paddingHorizontal: 16}}>
-            <Image source={item.img} style={styles.img} />
-
+            {/* <Image source={item.img} style={styles.img} /> */}
             <View></View>
           </View>
         )}

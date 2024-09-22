@@ -59,7 +59,6 @@ export default FoodItemsCard;
 const styles = StyleSheet.create({
   cartItemCards: {
     marginHorizontal: 6,
-    // marginBottom: 6,
     flexBasis: '45.8%',
   },
   itemName: {
