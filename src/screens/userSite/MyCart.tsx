@@ -1,7 +1,8 @@
 import {Image, StyleSheet, Text, View, FlatList} from 'react-native';
 import React from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
-import {cartItemsList, colors, fonts} from '../../utilities/constants';
+import {colors, fonts, myCartList} from '../../utilities/constants';
+import CancelIcon from 'react-native-vector-icons/AntDesign';
 
 const restaurant = {
   id: '1',
@@ -41,15 +42,73 @@ const MyCart = () => {
         <Text style={styles.headerBarTitle}>Your Order Details</Text>
       </View>
       <FlatList
-        data={cartItemsList}
+        data={myCartList}
         keyExtractor={item => item.id}
         renderItem={({item}) => (
-          <View style={{paddingHorizontal: 16}}>
-            {/* <Image source={item.img} style={styles.img} /> */}
-            <View></View>
+          <View
+            style={{
+              paddingHorizontal: 16,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              paddingVertical: 12,
+              borderBottomWidth: !(parseInt(item.id) === myCartList.length)
+                ? 1
+                : 0,
+              borderBottomColor: '#D1D1D1',
+              backgroundColor: 'red',
+              height: '20%',
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 12,
+              }}>
+              <Image source={item.img} style={styles.img} />
+              <View
+                style={{
+                  flexDirection: 'column',
+                  alignItems: 'flex-start',
+                  gap: 4,
+                }}>
+                <Text>{item.name}</Text>
+                <View
+                  style={[
+                    {
+                      backgroundColor: colors.SECONDARY,
+                      flexDirection: 'row',
+                      alignItems: 'center',
+                    },
+                    styles.addToCartContainer,
+                  ]}>
+                  <View style={styles.addToCartContainer}>
+                    <Text
+                      style={[styles.addToCartText, {paddingHorizontal: 4}]}>
+                      -
+                    </Text>
+                    <Text
+                      style={[styles.addToCartText, {paddingHorizontal: 4}]}>
+                      1
+                    </Text>
+                  </View>
+                  <Text style={[styles.addToCartText, {paddingHorizontal: 4}]}>
+                    +
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{flexDirection: 'column', alignItems: 'center', gap: 12}}>
+              <CancelIcon name="close" />
+              <Text>${item.price}</Text>
+            </View>
           </View>
         )}
       />
+      <View style={styles.headerBar}>
+        <Text style={styles.headerBarTitle}>Price Details</Text>
+      </View>
     </View>
   );
 };
@@ -86,6 +145,15 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     resizeMode: 'center',
-    borderRadius: 16,
+    // borderRadius: 16,
+  },
+  addToCartContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: 4,
+    paddingVertical: 2,
+    borderRadius: 8,
+  },
+  addToCartText: {
+    color: 'white',
   },
 });

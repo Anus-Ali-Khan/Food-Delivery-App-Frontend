@@ -73,10 +73,11 @@ export type DealsTypes = {
   price: string;
 };
 
-export type CartItemTypes = {
+export type myCartTypes = {
   id: string;
-  title: string;
+  name: string;
   img: ImageSourcePropType;
+  price: string;
 };
 
 export const colors: ColorTypes = {
@@ -380,7 +381,7 @@ export const dealsList: DealsTypes[] = [
   },
 ];
 
-export const cartItemsList: cartItemsTypes[] = [
+export const myCartList: myCartTypes[] = [
   {
     id: '1',
     name: 'Late Night Zinger Burger',
