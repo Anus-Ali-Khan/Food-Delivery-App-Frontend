@@ -44,6 +44,7 @@ const MyCart = () => {
       <FlatList
         data={myCartList}
         keyExtractor={item => item.id}
+        style={styles.flatList}
         renderItem={({item}) => (
           <View
             style={{
@@ -56,8 +57,7 @@ const MyCart = () => {
                 ? 1
                 : 0,
               borderBottomColor: '#D1D1D1',
-              backgroundColor: 'red',
-              height: '20%',
+              // backgroundColor: 'yellow',
             }}>
             <View
               style={{
@@ -65,14 +65,29 @@ const MyCart = () => {
                 alignItems: 'center',
                 gap: 12,
               }}>
-              <Image source={item.img} style={styles.img} />
+              <View
+                style={{
+                  height: 60,
+                  width: 60,
+                  borderRadius: 16,
+                  backgroundColor: 'red',
+                }}>
+                <Image source={item.img} style={styles.img} />
+              </View>
               <View
                 style={{
                   flexDirection: 'column',
                   alignItems: 'flex-start',
                   gap: 4,
                 }}>
-                <Text>{item.name}</Text>
+                <Text
+                  style={{
+                    fontFamily: fonts.SECONDARY,
+                    fontSize: 18,
+                    color: 'black',
+                  }}>
+                  {item.name}
+                </Text>
                 <View
                   style={[
                     {
@@ -100,14 +115,37 @@ const MyCart = () => {
             </View>
             <View
               style={{flexDirection: 'column', alignItems: 'center', gap: 12}}>
-              <CancelIcon name="close" />
-              <Text>${item.price}</Text>
+              <CancelIcon name="close" size={18} />
+              <Text
+                style={{
+                  color: colors.SECONDARY,
+                  fontFamily: fonts.SECONDARY,
+                  fontSize: 16,
+                }}>
+                ${item.price}
+              </Text>
             </View>
           </View>
         )}
       />
       <View style={styles.headerBar}>
         <Text style={styles.headerBarTitle}>Price Details</Text>
+      </View>
+      <View style={styles.priceContainer}>
+        <Text
+          style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
+          Total (2 items)
+        </Text>
+        <Text
+          style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
+          $11.99
+        </Text>
+      </View>
+      <View>
+        <Text
+          style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
+          Delivery Mode
+        </Text>
       </View>
     </View>
   );
@@ -116,6 +154,10 @@ const MyCart = () => {
 export default MyCart;
 
 const styles = StyleSheet.create({
+  flatList: {
+    height: '23.5%',
+    flexGrow: 0,
+  },
   title: {
     fontFamily: fonts.SECONDARY,
     fontSize: 20,
@@ -145,7 +187,6 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     resizeMode: 'center',
-    // borderRadius: 16,
   },
   addToCartContainer: {
     flexDirection: 'row',
@@ -155,5 +196,13 @@ const styles = StyleSheet.create({
   },
   addToCartText: {
     color: 'white',
+  },
+  priceContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#D1D1D1',
   },
 });

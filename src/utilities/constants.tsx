@@ -390,7 +390,19 @@ export const myCartList: myCartTypes[] = [
   },
   {
     id: '2',
+    name: 'Chicken Chineese',
+    price: '6.00',
+    img: Images.body.chineese,
+  },
+  {
+    id: '3',
     name: 'Late Night Zinger Burger',
+    price: '5.99',
+    img: Images.body.LateNightZB,
+  },
+  {
+    id: '4',
+    name: 'Chicken Chineese',
     price: '6.00',
     img: Images.body.chineese,
   },
