@@ -3,6 +3,7 @@ import React from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
 import {colors, fonts, myCartList} from '../../utilities/constants';
 import CancelIcon from 'react-native-vector-icons/AntDesign';
+import BouncyCheckbox from 'react-native-bouncy-checkbox';
 
 const restaurant = {
   id: '1',
@@ -69,8 +70,8 @@ const MyCart = () => {
                 style={{
                   height: 60,
                   width: 60,
-                  borderRadius: 16,
-                  backgroundColor: 'red',
+                  // borderRadius: 16,
+                  // backgroundColor: 'red',
                 }}>
                 <Image source={item.img} style={styles.img} />
               </View>
@@ -131,6 +132,7 @@ const MyCart = () => {
       <View style={styles.headerBar}>
         <Text style={styles.headerBarTitle}>Price Details</Text>
       </View>
+
       <View style={styles.priceContainer}>
         <Text
           style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
@@ -141,11 +143,50 @@ const MyCart = () => {
           $11.99
         </Text>
       </View>
-      <View>
+      <View style={[styles.priceContainer, {backgroundColor: 'yellow'}]}>
         <Text
           style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
           Delivery Mode
         </Text>
+        <View
+          style={{
+            flexDirection: 'row',
+            backgroundColor: 'red',
+            justifyContent: 'space-between',
+          }}>
+          <BouncyCheckbox
+            size={15}
+            fillColor={colors.PRIMARY}
+            unFillColor="#FFFFFF"
+            text="Home Delivery"
+            iconStyle={{borderColor: 'red'}}
+            innerIconStyle={{borderWidth: 2}}
+            textStyle={{
+              fontFamily: fonts.SECONDARY,
+              color: colors.SECONDARY,
+              fontSize: 12,
+            }}
+            onPress={(isChecked: boolean) => {
+              console.log(isChecked);
+            }}
+          />
+          <BouncyCheckbox
+            size={15}
+            fillColor={colors.PRIMARY}
+            unFillColor="#FFFFFF"
+            text="Pickup"
+            iconStyle={{borderColor: 'red'}}
+            innerIconStyle={{borderWidth: 2}}
+            textStyle={{
+              fontFamily: fonts.SECONDARY,
+              color: colors.SECONDARY,
+              fontSize: 12,
+            }}
+            onPress={(isChecked: boolean) => {
+              console.log(isChecked);
+            }}
+          />
+        </View>
       </View>
     </View>
   );
@@ -187,6 +228,7 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     resizeMode: 'center',
+    // borderRadius: 20,
   },
   addToCartContainer: {
     flexDirection: 'row',
