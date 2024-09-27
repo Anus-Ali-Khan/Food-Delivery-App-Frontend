@@ -1,9 +1,9 @@
 import {Image, StyleSheet, Text, View, FlatList} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
 import {colors, fonts, myCartList} from '../../utilities/constants';
 import CancelIcon from 'react-native-vector-icons/AntDesign';
-import BouncyCheckbox from 'react-native-bouncy-checkbox';
+import CheckBox from 'react-native-check-box';
 
 const restaurant = {
   id: '1',
@@ -13,7 +13,13 @@ const restaurant = {
   img: <RestaurantLogo height="50px" width="54px" />,
 };
 
+enum checkBox {
+  HomeDel = 'HomeDelivery',
+  Pickup = 'Pickup',
+}
+
 const MyCart = () => {
+  const [isChecked, setIsChecked] = useState<checkBox>('');
   return (
     <View style={{flex: 1, backgroundColor: 'white', marginTop: 6}}>
       <View
@@ -143,7 +149,7 @@ const MyCart = () => {
           $11.99
         </Text>
       </View>
-      <View style={[styles.priceContainer, {backgroundColor: 'yellow'}]}>
+      <View style={[styles.priceContainer]}>
         <Text
           style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
           Delivery Mode
@@ -151,41 +157,40 @@ const MyCart = () => {
         <View
           style={{
             flexDirection: 'row',
-            backgroundColor: 'red',
             justifyContent: 'space-between',
+            alignItems: 'center',
           }}>
-          <BouncyCheckbox
-            size={15}
-            fillColor={colors.PRIMARY}
-            unFillColor="#FFFFFF"
-            text="Home Delivery"
-            iconStyle={{borderColor: 'red'}}
-            innerIconStyle={{borderWidth: 2}}
-            textStyle={{
-              fontFamily: fonts.SECONDARY,
-              color: colors.SECONDARY,
-              fontSize: 12,
-            }}
-            onPress={(isChecked: boolean) => {
-              console.log(isChecked);
-            }}
-          />
-          <BouncyCheckbox
-            size={15}
-            fillColor={colors.PRIMARY}
-            unFillColor="#FFFFFF"
-            text="Pickup"
-            iconStyle={{borderColor: 'red'}}
-            innerIconStyle={{borderWidth: 2}}
-            textStyle={{
-              fontFamily: fonts.SECONDARY,
-              color: colors.SECONDARY,
-              fontSize: 12,
-            }}
-            onPress={(isChecked: boolean) => {
-              console.log(isChecked);
-            }}
-          />
+          <View style={{flexDirection: 'row', alignItems: 'center'}}>
+            <CheckBox
+              onClick={() => setIsChecked(prev => !prev)}
+              isChecked={isChecked}
+              style={{borderRadius: 20}}
+              checkedCheckBoxColor={colors.PRIMARY}
+            />
+            <Text
+              style={{
+                fontFamily: fonts.SECONDARY,
+                color: colors.SECONDARY,
+                fontSize: 12,
+              }}>
+              Home Delivery
+            </Text>
+          </View>
+          <View>
+            <CheckBox
+              style={{flex: 1, padding: 10}}
+              onClick={() => setIsChecked(prev => !prev)}
+              isChecked={isChecked}
+            />
+            <Text
+              style={{
+                fontFamily: fonts.SECONDARY,
+                color: colors.SECONDARY,
+                fontSize: 12,
+              }}>
+              Pickup
+            </Text>
+          </View>
         </View>
       </View>
     </View>
