@@ -3,7 +3,10 @@ import React, {useState} from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
 import {colors, fonts, myCartList} from '../../utilities/constants';
 import CancelIcon from 'react-native-vector-icons/AntDesign';
-import CheckBox from 'react-native-check-box';
+import CustomRadioButton from '../../components/CustomRadioButton';
+import ForwardIcon from 'react-native-vector-icons/Ionicons';
+import Input from '../../components/Input';
+import Button from '../../components/Button';
 
 const restaurant = {
   id: '1',
@@ -13,13 +16,7 @@ const restaurant = {
   img: <RestaurantLogo height="50px" width="54px" />,
 };
 
-enum checkBox {
-  HomeDel = 'HomeDelivery',
-  Pickup = 'Pickup',
-}
-
 const MyCart = () => {
-  const [isChecked, setIsChecked] = useState<checkBox>('');
   return (
     <View style={{flex: 1, backgroundColor: 'white', marginTop: 6}}>
       <View
@@ -140,59 +137,67 @@ const MyCart = () => {
       </View>
 
       <View style={styles.priceContainer}>
-        <Text
-          style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
-          Total (2 items)
-        </Text>
-        <Text
-          style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
-          $11.99
-        </Text>
+        <Text style={styles.headingStyle}>Total (2 items)</Text>
+        <Text style={styles.headingStyle}>$11.99</Text>
       </View>
       <View style={[styles.priceContainer]}>
-        <Text
-          style={{fontFamily: fonts.SECONDARY, color: 'black', fontSize: 18}}>
-          Delivery Mode
-        </Text>
+        <Text style={styles.headingStyle}>Delivery Mode</Text>
+        <CustomRadioButton title1="Home Delivery" title2="Pickup" />
+      </View>
+      <View style={[styles.priceContainer]}>
+        <Text style={styles.headingStyle}>Payment method</Text>
+        <CustomRadioButton title1="COD" title2="Card" />
+      </View>
+      <View
+        style={{
+          paddingHorizontal: 16,
+          paddingVertical: 16,
+          borderBottomWidth: 1,
+          borderBottomColor: '#D1D1D1',
+          flexDirection: 'column',
+          gap: 8,
+        }}>
         <View
           style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <CheckBox
-              onClick={() => setIsChecked(prev => !prev)}
-              isChecked={isChecked}
-              style={{borderRadius: 20}}
-              checkedCheckBoxColor={colors.PRIMARY}
-            />
+          <Text style={styles.headingStyle}>Add address</Text>
+          <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
             <Text
               style={{
+                fontSize: 14,
                 fontFamily: fonts.SECONDARY,
-                color: colors.SECONDARY,
-                fontSize: 12,
+                color: 'black',
               }}>
-              Home Delivery
+              Select locations
             </Text>
-          </View>
-          <View>
-            <CheckBox
-              style={{flex: 1, padding: 10}}
-              onClick={() => setIsChecked(prev => !prev)}
-              isChecked={isChecked}
+            <ForwardIcon
+              name="chevron-forward"
+              color={colors.PRIMARY}
+              size={16}
             />
-            <Text
-              style={{
-                fontFamily: fonts.SECONDARY,
-                color: colors.SECONDARY,
-                fontSize: 12,
-              }}>
-              Pickup
-            </Text>
           </View>
         </View>
+        <Input placeholder="Type here" inputStyles={{paddingVertical: 4}} />
       </View>
+      <View
+        style={{
+          marginHorizontal: 16,
+          paddingVertical: 16,
+          borderBottomWidth: 1,
+          borderBottomColor: '#D1D1D1',
+        }}>
+        <Text>Add special instructions or allergy notes here</Text>
+      </View>
+      <Button
+        title="Place Order to Thai Cuisine"
+        borderColor="transparent"
+        textColor={colors.SECONDARY}
+        textStyle={{fontFamily: fonts.SECONDARY}}
+        style={{marginHorizontal: 16, marginTop: 12}}
+      />
     </View>
   );
 };
@@ -247,9 +252,15 @@ const styles = StyleSheet.create({
   priceContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#D1D1D1',
+  },
+  headingStyle: {
+    fontFamily: fonts.SECONDARY,
+    color: 'black',
+    fontSize: 18,
   },
 });
