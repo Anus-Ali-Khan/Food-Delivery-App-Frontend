@@ -7,6 +7,8 @@ import CustomRadioButton from '../../components/CustomRadioButton';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 const restaurant = {
   id: '1',
@@ -17,6 +19,20 @@ const restaurant = {
 };
 
 const MyCart = () => {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
+    string | undefined
+  >();
+  const [selectedDeliveryMode, setSelectedDeliveryMode] = useState<
+    string | undefined
+  >();
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
+  const handleNavigateToMyCards = () => {
+    if (selectedPaymentMethod === 'Card') {
+      navigation.navigate('MyCards');
+    }
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: 'white', marginTop: 6}}>
       <View
@@ -142,11 +158,53 @@ const MyCart = () => {
       </View>
       <View style={[styles.priceContainer]}>
         <Text style={styles.headingStyle}>Delivery Mode</Text>
-        <CustomRadioButton title1="Home Delivery" title2="Pickup" />
+        <CustomRadioButton
+          selectedId={selectedDeliveryMode}
+          setSelectedId={setSelectedDeliveryMode}
+          options={[
+            {
+              id: 'Home Delivery',
+              label: 'Home Delivery',
+              value: 'Home Delivery',
+              borderColor: colors.PRIMARY,
+              color: colors.SECONDARY,
+              size: 16,
+            },
+            {
+              id: 'Pickup',
+              label: 'Pickup',
+              value: 'Pickup',
+              borderColor: colors.PRIMARY,
+              color: colors.SECONDARY,
+              size: 16,
+            },
+          ]}
+        />
       </View>
       <View style={[styles.priceContainer]}>
         <Text style={styles.headingStyle}>Payment method</Text>
-        <CustomRadioButton title1="COD" title2="Card" />
+        <CustomRadioButton
+          selectedId={selectedPaymentMethod}
+          setSelectedId={setSelectedPaymentMethod}
+          options={[
+            {
+              id: 'COD',
+              label: 'COD',
+              value: 'COD',
+              borderColor: colors.PRIMARY,
+              color: colors.SECONDARY,
+              size: 16,
+            },
+            {
+              id: 'Card',
+              label: 'Card',
+              value: 'Card',
+              borderColor: colors.PRIMARY,
+              color: colors.SECONDARY,
+              size: 16,
+            },
+          ]}
+        />
       </View>
       <View
         style={{
@@ -197,6 +255,7 @@ const MyCart = () => {
         textColor={colors.SECONDARY}
         textStyle={{fontFamily: fonts.SECONDARY}}
         style={{marginHorizontal: 16, marginTop: 12}}
+        onPress={handleNavigateToMyCards}
       />
     </View>
   );

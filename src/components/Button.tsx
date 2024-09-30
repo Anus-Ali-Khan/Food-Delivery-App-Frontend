@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   text: {
-    color: '1E1E1E',
+    color: '#1E1E1E',
     textAlign: 'center',
     fontSize: 18,
     fontWeight: 'medium',

@@ -16,8 +16,8 @@ import BackArrowIcon from 'react-native-vector-icons/AntDesign';
 import ViewMenu from '../../screens/userSite/ViewMenu';
 import LocationSvg from '../../images/location.svg';
 import CartSvg from '../../images/cartIcon.svg';
-import MenuScreenTopTabs from './MenuScreenTopTabs';
 import MyCart from '../../screens/userSite/MyCart';
+import MyCards from '../../screens/userSite/MyCards';
 
 const Stack = createStackNavigator();
 
@@ -83,6 +83,23 @@ const StackNavigation = () => {
                   <BackArrowIcon name="arrowleft" size={16} color={'black'} />
                 }
                 title="My Cart"
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="MyCards"
+        component={MyCards}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                title="My Cards"
               />
             );
           },

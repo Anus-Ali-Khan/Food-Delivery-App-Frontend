@@ -4,38 +4,15 @@ import RadioGroup, {RadioButtonProps} from 'react-native-radio-buttons-group';
 import {colors, fonts} from '../utilities/constants';
 
 type PropsType = {
-  title1: string;
-  title2: string;
+  selectedId: string | undefined;
+  options: RadioButtonProps[];
+  setSelectedId: React.Dispatch<React.SetStateAction<string | undefined>>;
 };
 
-const CustomRadioButton = ({title1, title2}: PropsType) => {
-  const radioButtons: RadioButtonProps[] = useMemo(
-    () => [
-      {
-        id: '1', // acts as primary key, should be unique and non-empty string
-        label: title1,
-        value: 'option1',
-        borderColor: colors.PRIMARY,
-        color: colors.SECONDARY,
-        size: 16,
-      },
-      {
-        id: '2',
-        label: title2,
-        value: 'option2',
-        borderColor: colors.PRIMARY,
-        color: colors.SECONDARY,
-        size: 16,
-      },
-    ],
-    [],
-  );
-
-  const [selectedId, setSelectedId] = useState<string | undefined>();
-
+const CustomRadioButton = ({options, selectedId, setSelectedId}: PropsType) => {
   return (
     <RadioGroup
-      radioButtons={radioButtons}
+      radioButtons={options}
       onPress={setSelectedId}
       selectedId={selectedId}
       layout="row"
