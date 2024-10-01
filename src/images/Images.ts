@@ -18,5 +18,6 @@ export default {
     broastDeals: require('./broastdeal.jpg'),
     LateNightZB: require('./latenight-zinger-burger.jpg'),
     chineese: require('./Chineese.jpg'),
+    mapLocation: require('./mapLocation.png'),
   },
 };

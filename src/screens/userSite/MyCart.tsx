@@ -33,6 +33,10 @@ const MyCart = () => {
     }
   };
 
+  const handleNavigateToSelectLocation = () => {
+    navigation.navigate('SelectLocation');
+  };
+
   return (
     <View style={{flex: 1, backgroundColor: 'white', marginTop: 6}}>
       <View
@@ -235,6 +239,7 @@ const MyCart = () => {
               name="chevron-forward"
               color={colors.PRIMARY}
               size={16}
+              onPress={handleNavigateToSelectLocation}
             />
           </View>
         </View>

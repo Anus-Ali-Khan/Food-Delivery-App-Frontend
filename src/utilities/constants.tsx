@@ -73,6 +73,13 @@ export type DealsTypes = {
   price: string;
 };
 
+type LocationTypes = {
+  id: string;
+  img: ImageSourcePropType;
+  title: string;
+  description: string;
+};
+
 export type myCartTypes = {
   id: string;
   name: string;
@@ -405,5 +412,29 @@ export const myCartList: myCartTypes[] = [
     name: 'Chicken Chineese',
     price: '6.00',
     img: Images.body.chineese,
+  },
+];
+
+export const locationCards: LocationTypes[] = [
+  {
+    id: '1',
+    img: Images.body.mapLocation,
+    title: 'Al Saheel Appartment',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+  },
+  {
+    id: '2',
+    img: Images.body.mapLocation,
+    title: 'Neo Office Suit',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+  },
+  {
+    id: '3',
+    img: Images.body.mapLocation,
+    title: 'Al Saheel Appartment',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
   },
 ];
