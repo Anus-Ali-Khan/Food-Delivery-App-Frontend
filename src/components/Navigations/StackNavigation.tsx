@@ -19,6 +19,7 @@ import CartSvg from '../../images/cartIcon.svg';
 import MyCart from '../../screens/userSite/MyCart';
 import MyCards from '../../screens/userSite/MyCards';
 import SelectLocation from '../../screens/userSite/SelectLocation';
+import ChooseLocation from '../../screens/userSite/ChooseLocation';
 
 const Stack = createStackNavigator();
 
@@ -118,6 +119,23 @@ const StackNavigation = () => {
                   <BackArrowIcon name="arrowleft" size={16} color={'black'} />
                 }
                 title="Select Locations"
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="ChooseLocation"
+        component={ChooseLocation}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                title="Choose Location"
               />
             );
           },
