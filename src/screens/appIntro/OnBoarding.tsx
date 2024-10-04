@@ -28,6 +28,7 @@ const OnBoarding = () => {
           textColor="white"
           borderColor={colors.PRIMARY}
           buttonStyle={styles.buttons}
+          onPress={() => navigation.navigate('Login')}
         />
       </View>
     </ImageBackground>
