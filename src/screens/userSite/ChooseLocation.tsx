@@ -16,6 +16,7 @@ import MapView, {
 } from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
+import {getDistance} from 'geolib';
 
 const ChooseLocation = () => {
   const [location, setLocation] = useState<Region>({
@@ -101,7 +102,37 @@ const ChooseLocation = () => {
   };
 
   const showCoordinates = () => {
-    console.log(source, destination);
+    if (
+      (source.latitude != 0 && source.latitude != 0) ||
+      (destination.latitude != 0 && destination.longitude != 0)
+    ) {
+      const distance =
+        getDistance(
+          {
+            latitude: source.latitude,
+            longitude: source.longitude,
+          },
+          {
+            latitude: destination.latitude,
+            longitude: destination.longitude,
+          },
+        ) / 1000;
+      Alert.alert(
+        'Coordinates and Distance',
+        `Source: \nLatitude: ${destination.latitude}, Longitude:${
+          source.longitude
+        }\n\nDestination: \nLatitude: ${destination.latitude}, Longitude: ${
+          destination.longitude
+        } \n\nDistance between source and destination:${distance.toFixed(
+          2,
+        )}kilometers`,
+      );
+    } else {
+      Alert.alert(
+        'Error',
+        'Please select both source and destination coordinates.',
+      );
+    }
   };
 
   useEffect(() => {
@@ -125,13 +156,21 @@ const ChooseLocation = () => {
           />
         )}
         {source && (
-          <Marker coordinate={source} title={'Source'} pinColor={'green'} />
+          <Marker
+            coordinate={source}
+            title={'Source'}
+            pinColor={'green'}
+            draggable={true}
+            onDragEnd={e => setSource(e.nativeEvent.coordinate)}
+          />
         )}
         {destination && (
           <Marker
             coordinate={destination}
             title={'Destination'}
             pinColor={'blue'}
+            draggable={true}
+            onDragEnd={e => setDestination(e.nativeEvent.coordinate)}
           />
         )}
         {source && destination && (
@@ -144,18 +183,34 @@ const ChooseLocation = () => {
       </MapView>
       <View style={styles.buttonContainer}>
         <View style={styles.buttonGroup}>
-          <Button
-            title={isChoosingSource ? 'Please Choose Source' : 'Choose Source'}
-            onPress={() => setIsChoosingSource(true)}
-          />
-          <Button
-            title={
-              isChoosingDestination
-                ? 'Please Choose Destination'
-                : 'Choose Destination'
-            }
-            onPress={() => setIsChoosingDestination(true)}
-          />
+          {source.latitude != 0 && source.longitude != 0 ? (
+            <Button
+              title="Remove Source"
+              onPress={() => setSource({latitude: 0, longitude: 0})}
+            />
+          ) : (
+            <Button
+              title={
+                isChoosingSource ? 'Please Choose Source' : 'Choose Source'
+              }
+              onPress={() => setIsChoosingSource(true)}
+            />
+          )}
+          {destination.latitude != 0 && destination.longitude != 0 ? (
+            <Button
+              title="Remove Destination"
+              onPress={() => setDestination({latitude: 0, longitude: 0})}
+            />
+          ) : (
+            <Button
+              title={
+                isChoosingDestination
+                  ? 'Please Choose Destination'
+                  : 'Choose Destination'
+              }
+              onPress={() => setIsChoosingDestination(true)}
+            />
+          )}
         </View>
         <Button title="Show Coordinates" onPress={showCoordinates} />
       </View>
