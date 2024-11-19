@@ -17,9 +17,17 @@ import {StackNavigationProp} from '@react-navigation/stack';
 const SelectLocation = () => {
   const [selectedLocation, setSelectedLocation] = useState<string>('');
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+  const address = navigation.getState();
+  console.log(address);
 
-  const handlebNavigateToChooseLocation = () => {
+  const handleNavigateToChooseLocation = () => {
     navigation.navigate('ChooseLocation');
+  };
+
+  const handleNavigateToCart = () => {
+    if (selectedLocation) {
+      navigation.navigate('MyCart');
+    }
   };
 
   return (
@@ -37,7 +45,7 @@ const SelectLocation = () => {
           </Text>
           <TouchableOpacity
             style={{flexDirection: 'row', alignItems: 'center', gap: 6}}
-            onPress={handlebNavigateToChooseLocation}>
+            onPress={handleNavigateToChooseLocation}>
             <AddIcon name="diff-added" color={colors.PRIMARY} />
             <Text
               style={{
@@ -109,6 +117,7 @@ const SelectLocation = () => {
         backgroundColor="#07BC49"
         textColor="black"
         style={{marginHorizontal: 16}}
+        onPress={handleNavigateToCart}
       />
     </View>
   );

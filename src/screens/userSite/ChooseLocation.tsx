@@ -7,7 +7,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import MapView, {
   Region,
   MapPressEvent,
@@ -17,6 +17,10 @@ import MapView, {
 import {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import {getDistance} from 'geolib';
+import {colors} from '../../utilities/constants';
+// import Geocoder from 'react-native-geocoding';
+
+// Geocoder.init('AIzaSyBxPFxpju8tZ58acQvjmFHH5Bp5odZ_acc');
 
 const ChooseLocation = () => {
   const [location, setLocation] = useState<Region>({
@@ -32,13 +36,8 @@ const ChooseLocation = () => {
   });
   const [isChoosingSource, setIsChoosingSource] = useState(false);
   const [isChoosingDestination, setIsChoosingDestination] = useState(false);
-
-  const defaultLocation = {
-    latitude: 37.78825,
-    longitude: -122.4324,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
-  };
+  // const [openRBS, setOpenRBS] = useState<boolean>(false);
+  // const [address, setAddress] = useState('');
 
   const getUsersCurrentLocation = () => {
     Geolocation.getCurrentPosition(
@@ -102,6 +101,7 @@ const ChooseLocation = () => {
   };
 
   const showCoordinates = () => {
+    // setOpenRBS(true);
     if (
       (source.latitude != 0 && source.latitude != 0) ||
       (destination.latitude != 0 && destination.longitude != 0)
@@ -137,6 +137,20 @@ const ChooseLocation = () => {
 
   useEffect(() => {
     requestLocationPermission();
+    // const getAddress = async () => {
+    //   try {
+    //     const response = await Geocoder.from(
+    //       location.latitude,
+    //       location.longitude,
+    //     );
+    //     const formattedAddress = response.results[0].formatted_address;
+    //     setAddress(formattedAddress);
+    //   } catch (error) {
+    //     console.warn(error);
+    //   }
+    // };
+
+    // getAddress();
   }, []);
 
   return (
@@ -152,7 +166,6 @@ const ChooseLocation = () => {
             coordinate={location}
             onPress={data => console.log(data.nativeEvent.coordinate)}
             title={'Testing'}
-            // description={marker.description}
           />
         )}
         {source && (

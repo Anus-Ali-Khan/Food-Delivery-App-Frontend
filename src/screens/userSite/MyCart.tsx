@@ -25,6 +25,8 @@ const MyCart = () => {
   const [selectedDeliveryMode, setSelectedDeliveryMode] = useState<
     string | undefined
   >();
+  const [selectedAddress, setSelectedAddress] = useState<string>('');
+
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const handleNavigateToMyCards = () => {
@@ -34,7 +36,7 @@ const MyCart = () => {
   };
 
   const handleNavigateToSelectLocation = () => {
-    navigation.navigate('SelectLocation');
+    navigation.navigate('SelectLocation', {address: setSelectedAddress});
   };
 
   return (
@@ -243,7 +245,12 @@ const MyCart = () => {
             />
           </View>
         </View>
-        <Input placeholder="Type here" inputStyles={{paddingVertical: 4}} />
+
+        <Input
+          placeholder="Type here"
+          inputStyles={{paddingVertical: 4}}
+          value={selectedAddress ? selectedAddress : ''}
+        />
       </View>
       <View
         style={{
