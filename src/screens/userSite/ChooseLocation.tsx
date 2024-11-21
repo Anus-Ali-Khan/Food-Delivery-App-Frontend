@@ -1,13 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import {
   Alert,
-  Button,
   PermissionsAndroid,
   Platform,
   StyleSheet,
-  Text,
   View,
 } from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import Button from '../../components/Button';
 import MapView, {
   Region,
   MapPressEvent,
@@ -18,6 +18,7 @@ import {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import {getDistance} from 'geolib';
 import {colors} from '../../utilities/constants';
+
 // import Geocoder from 'react-native-geocoding';
 
 // Geocoder.init('AIzaSyBxPFxpju8tZ58acQvjmFHH5Bp5odZ_acc');
@@ -103,8 +104,8 @@ const ChooseLocation = () => {
   const showCoordinates = () => {
     // setOpenRBS(true);
     if (
-      (source.latitude != 0 && source.latitude != 0) ||
-      (destination.latitude != 0 && destination.longitude != 0)
+      (source.latitude !== 0 && source.latitude !== 0) ||
+      (destination.latitude !== 0 && destination.longitude !== 0)
     ) {
       const distance =
         getDistance(
@@ -196,36 +197,52 @@ const ChooseLocation = () => {
       </MapView>
       <View style={styles.buttonContainer}>
         <View style={styles.buttonGroup}>
-          {source.latitude != 0 && source.longitude != 0 ? (
+          {source.latitude !== 0 && source.longitude !== 0 ? (
             <Button
               title="Remove Source"
               onPress={() => setSource({latitude: 0, longitude: 0})}
+              borderColor="transparent"
+              backgroundColor={colors.SECONDARY}
+              textColor="white"
             />
           ) : (
             <Button
-              title={
-                isChoosingSource ? 'Please Choose Source' : 'Choose Source'
-              }
+              title={'Choose Source'}
               onPress={() => setIsChoosingSource(true)}
+              borderColor="transparent"
+              backgroundColor={
+                isChoosingSource ? colors.PRIMARY : colors.SECONDARY
+              }
+              textColor={isChoosingSource ? 'black' : 'white'}
             />
           )}
-          {destination.latitude != 0 && destination.longitude != 0 ? (
+          {destination.latitude !== 0 && destination.longitude !== 0 ? (
             <Button
               title="Remove Destination"
               onPress={() => setDestination({latitude: 0, longitude: 0})}
+              borderColor="transparent"
+              backgroundColor={colors.SECONDARY}
+              textColor="white"
             />
           ) : (
             <Button
-              title={
-                isChoosingDestination
-                  ? 'Please Choose Destination'
-                  : 'Choose Destination'
-              }
+              title={'Choose Destination'}
               onPress={() => setIsChoosingDestination(true)}
+              borderColor="transparent"
+              backgroundColor={
+                isChoosingDestination ? colors.PRIMARY : colors.SECONDARY
+              }
+              textColor={isChoosingDestination ? 'black' : 'white'}
             />
           )}
         </View>
-        <Button title="Show Coordinates" onPress={showCoordinates} />
+        <Button
+          title="Show Coordinates"
+          onPress={showCoordinates}
+          borderColor="transparent"
+          backgroundColor={colors.SECONDARY}
+          textColor="white"
+        />
       </View>
     </View>
   );
@@ -251,6 +268,7 @@ const styles = StyleSheet.create({
   buttonGroup: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    gap: 8,
     marginBottom: 10,
   },
 });

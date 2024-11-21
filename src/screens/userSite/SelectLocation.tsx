@@ -1,11 +1,5 @@
-import {
-  FlatList,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+/* eslint-disable react-native/no-inline-styles */
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {colors, fonts, locationCards} from '../../utilities/constants';
 import AddIcon from 'react-native-vector-icons/Octicons';
@@ -124,5 +118,3 @@ const SelectLocation = () => {
 };
 
 export default SelectLocation;
-
-const styles = StyleSheet.create({});

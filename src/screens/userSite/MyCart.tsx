@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {Image, StyleSheet, Text, View, FlatList} from 'react-native';
 import React, {useState} from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
@@ -25,7 +26,6 @@ const MyCart = () => {
   const [selectedDeliveryMode, setSelectedDeliveryMode] = useState<
     string | undefined
   >();
-  const [selectedAddress, setSelectedAddress] = useState<string>('');
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
@@ -36,7 +36,7 @@ const MyCart = () => {
   };
 
   const handleNavigateToSelectLocation = () => {
-    navigation.navigate('SelectLocation', {address: setSelectedAddress});
+    navigation.navigate('SelectLocation');
   };
 
   return (
@@ -246,11 +246,7 @@ const MyCart = () => {
           </View>
         </View>
 
-        <Input
-          placeholder="Type here"
-          inputStyles={{paddingVertical: 4}}
-          value={selectedAddress ? selectedAddress : ''}
-        />
+        <Input placeholder="Type here" inputStyles={{paddingVertical: 4}} />
       </View>
       <View
         style={{
