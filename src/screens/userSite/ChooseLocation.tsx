@@ -18,12 +18,15 @@ import {Marker} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import {getDistance} from 'geolib';
 import {colors} from '../../utilities/constants';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 // import Geocoder from 'react-native-geocoding';
 
 // Geocoder.init('AIzaSyBxPFxpju8tZ58acQvjmFHH5Bp5odZ_acc');
 
 const ChooseLocation = () => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const [location, setLocation] = useState<Region>({
     latitude: 0,
     longitude: 0,
@@ -107,32 +110,33 @@ const ChooseLocation = () => {
       (source.latitude !== 0 && source.latitude !== 0) ||
       (destination.latitude !== 0 && destination.longitude !== 0)
     ) {
-      const distance =
-        getDistance(
-          {
-            latitude: source.latitude,
-            longitude: source.longitude,
-          },
-          {
-            latitude: destination.latitude,
-            longitude: destination.longitude,
-          },
-        ) / 1000;
-      Alert.alert(
-        'Coordinates and Distance',
-        `Source: \nLatitude: ${destination.latitude}, Longitude:${
-          source.longitude
-        }\n\nDestination: \nLatitude: ${destination.latitude}, Longitude: ${
-          destination.longitude
-        } \n\nDistance between source and destination:${distance.toFixed(
-          2,
-        )}kilometers`,
-      );
-    } else {
-      Alert.alert(
-        'Error',
-        'Please select both source and destination coordinates.',
-      );
+      navigation.navigate('MyCart', {source: source, destination: destination});
+      //   const distance =
+      //     getDistance(
+      //       {
+      //         latitude: source.latitude,
+      //         longitude: source.longitude,
+      //       },
+      //       {
+      //         latitude: destination.latitude,
+      //         longitude: destination.longitude,
+      //       },
+      //     ) / 1000;
+      //   Alert.alert(
+      //     'Coordinates and Distance',
+      //     `Source: \nLatitude: ${destination.latitude}, Longitude:${
+      //       source.longitude
+      //     }\n\nDestination: \nLatitude: ${destination.latitude}, Longitude: ${
+      //       destination.longitude
+      //     } \n\nDistance between source and destination:${distance.toFixed(
+      //       2,
+      //     )}kilometers`,
+      //   );
+      // } else {
+      //   Alert.alert(
+      //     'Error',
+      //     'Please select both source and destination coordinates.',
+      //   );
     }
   };
 
@@ -237,7 +241,7 @@ const ChooseLocation = () => {
           )}
         </View>
         <Button
-          title="Show Coordinates"
+          title="Done"
           onPress={showCoordinates}
           borderColor="transparent"
           backgroundColor={colors.SECONDARY}

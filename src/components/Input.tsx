@@ -14,6 +14,7 @@ type PropsType = {
   name?: string;
   icon?: ReactNode;
   placeholderTextColor?: string;
+  numberOfLines?: number;
 };
 
 const Input = ({
@@ -26,6 +27,7 @@ const Input = ({
   name,
   icon,
   placeholderTextColor,
+  numberOfLines,
 }: PropsType) => {
   const [isFocused, setIsFocused] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(secureTextEntry);
@@ -41,6 +43,7 @@ const Input = ({
         secureTextEntry={showPassword}
         onChangeText={onChangeText}
         value={value}
+        numberOfLines={numberOfLines}
         style={[
           styles.input,
           {borderColor: isFocused ? `${colors.PRIMARY}` : '#DADADA'},

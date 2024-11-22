@@ -8,8 +8,14 @@ import CustomRadioButton from '../../components/CustomRadioButton';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {
+  ParamListBase,
+  RouteProp,
+  useNavigation,
+  useRoute,
+} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {LatLng} from 'react-native-maps';
 
 const restaurant = {
   id: '1',
@@ -19,13 +25,22 @@ const restaurant = {
   img: <RestaurantLogo height="50px" width="54px" />,
 };
 
-const MyCart = () => {
+const MyCart = ({route}: any) => {
+  //Get the param
+
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | undefined
   >();
   const [selectedDeliveryMode, setSelectedDeliveryMode] = useState<
     string | undefined
   >();
+
+  let destination;
+  let source;
+  if (route.params.length > 0) {
+    destination = route.params.destination;
+    source = route.params.source;
+  }
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
@@ -246,7 +261,16 @@ const MyCart = () => {
           </View>
         </View>
 
-        <Input placeholder="Type here" inputStyles={{paddingVertical: 4}} />
+        <Input
+          placeholder="Type here"
+          inputStyles={{paddingVertical: 4}}
+          numberOfLines={2}
+          value={
+            source && destination
+              ? `\nDestination: \nLatitude: ${destination.latitude}, Longitude: ${destination.longitude}`
+              : ''
+          }
+        />
       </View>
       <View
         style={{
