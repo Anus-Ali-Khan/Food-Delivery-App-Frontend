@@ -46,7 +46,7 @@ const ChooseLocation = () => {
   const getUsersCurrentLocation = () => {
     Geolocation.getCurrentPosition(
       position => {
-        console.log(position);
+        // console.log(position);
         setLocation({
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
@@ -77,7 +77,7 @@ const ChooseLocation = () => {
           },
         );
         if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          console.log('granted');
+          // console.log('granted');
           getUsersCurrentLocation();
         } else {
           Alert.alert(
@@ -94,7 +94,7 @@ const ChooseLocation = () => {
 
   const handleMapPress = (e: MapPressEvent) => {
     const coordinates = e.nativeEvent.coordinate;
-    console.log(coordinates);
+    // console.log(coordinates);
     if (isChoosingSource) {
       setSource(coordinates);
       setIsChoosingSource(false);

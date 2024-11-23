@@ -35,12 +35,10 @@ const MyCart = ({route}: any) => {
     string | undefined
   >();
 
-  let destination;
-  let source;
-  if (route.params.length > 0) {
-    destination = route.params.destination;
-    source = route.params.source;
-  }
+  const {
+    source = {latitude: 0, longitude: 0},
+    destination = {latitude: 0, longitude: 0},
+  } = route.params || {};
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
