@@ -1,6 +1,5 @@
 import {Modal as RNModal, StyleSheet, Text, View} from 'react-native';
 import React, {PropsWithChildren, ReactElement} from 'react';
-import {SafeAreaView} from 'react-native-safe-area-context';
 
 interface ModalPropsType extends PropsWithChildren {
   children: ReactElement;

@@ -1,5 +1,12 @@
-/* eslint-disable react-native/no-inline-styles */
-import {Image, StyleSheet, Text, View, FlatList} from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Alert,
+  TouchableOpacity,
+} from 'react-native';
 import React, {useState} from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
 import {colors, fonts, myCartList} from '../../utilities/constants';
@@ -8,14 +15,10 @@ import CustomRadioButton from '../../components/CustomRadioButton';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import {
-  ParamListBase,
-  RouteProp,
-  useNavigation,
-  useRoute,
-} from '@react-navigation/native';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {LatLng} from 'react-native-maps';
+import CustomModal from '../../components/CustomModal';
+import OrderModal from '../../components/OrderModal';
 
 const restaurant = {
   id: '1',
@@ -25,9 +28,17 @@ const restaurant = {
   img: <RestaurantLogo height="50px" width="54px" />,
 };
 
-const MyCart = ({route}: any) => {
-  //Get the param
+enum deliveryMode {
+  HomeDelivery = 'FomeDelivery',
+  Pickup = 'Pickup',
+}
 
+enum paymentMethod {
+  COD = 'COD',
+  Card = 'Card',
+}
+
+const MyCart = ({route}: any) => {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState<
     string | undefined
   >();
@@ -35,16 +46,47 @@ const MyCart = ({route}: any) => {
     string | undefined
   >();
 
+  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  //Get the param
   const {
     source = {latitude: 0, longitude: 0},
     destination = {latitude: 0, longitude: 0},
   } = route.params || {};
+  console.log(destination);
 
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const handleNavigateToMyCards = () => {
-    if (selectedPaymentMethod === 'Card') {
+    if (
+      selectedPaymentMethod === 'Card' &&
+      selectedDeliveryMode &&
+      destination.latitude !== 0
+    ) {
       navigation.navigate('MyCards');
+    }
+    if (
+      selectedPaymentMethod === 'COD' &&
+      selectedDeliveryMode &&
+      destination?.latitude !== 0
+    ) {
+      setOpenModal(true);
+    }
+    console.log(destination?.latitude);
+    if (
+      !(selectedDeliveryMode || selectedPaymentMethod) ||
+      destination?.latitude === 0
+    ) {
+      Alert.alert(
+        'Error',
+        `Please select ${
+          !selectedDeliveryMode
+            ? 'Delivery Mode'
+            : !selectedPaymentMethod
+            ? 'Payment Method'
+            : 'delivery address'
+        } `,
+      );
     }
   };
 
@@ -241,7 +283,9 @@ const MyCart = ({route}: any) => {
             alignItems: 'center',
           }}>
           <Text style={styles.headingStyle}>Add address</Text>
-          <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
+          <TouchableOpacity
+            style={{flexDirection: 'row', alignItems: 'center', gap: 4}}
+            onPress={handleNavigateToSelectLocation}>
             <Text
               style={{
                 fontSize: 14,
@@ -254,9 +298,8 @@ const MyCart = ({route}: any) => {
               name="chevron-forward"
               color={colors.PRIMARY}
               size={16}
-              onPress={handleNavigateToSelectLocation}
             />
-          </View>
+          </TouchableOpacity>
         </View>
 
         <Input
@@ -287,6 +330,12 @@ const MyCart = ({route}: any) => {
         style={{marginHorizontal: 16, marginTop: 12}}
         onPress={handleNavigateToMyCards}
       />
+      {openModal && (
+        <CustomModal
+          isOpen={openModal}
+          children={<OrderModal setOpenModal={setOpenModal} />}
+        />
+      )}
     </View>
   );
 };
