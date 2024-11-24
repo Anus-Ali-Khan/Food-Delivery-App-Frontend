@@ -20,6 +20,7 @@ import MyCart from '../../screens/userSite/MyCart';
 import MyCards from '../../screens/userSite/MyCards';
 import SelectLocation from '../../screens/userSite/SelectLocation';
 import ChooseLocation from '../../screens/userSite/ChooseLocation';
+import Orders from '../../screens/userSite/Orders';
 
 const Stack = createStackNavigator();
 
@@ -136,6 +137,23 @@ const StackNavigation = () => {
                   <BackArrowIcon name="arrowleft" size={16} color={'black'} />
                 }
                 title="Choose Location"
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="Orders"
+        component={Orders}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                title="Orders"
               />
             );
           },

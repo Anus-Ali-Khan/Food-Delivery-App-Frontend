@@ -19,5 +19,6 @@ export default {
     LateNightZB: require('./latenight-zinger-burger.jpg'),
     chineese: require('./Chineese.jpg'),
     mapLocation: require('./mapLocation.png'),
+    orderGif: require('./OrderGif.gif'),
   },
 };
