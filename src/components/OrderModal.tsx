@@ -15,7 +15,7 @@ const OrderModal = ({setOpenModal}: PropsType) => {
 
   const handleClick = () => {
     setOpenModal(false);
-    navigation.navigate('Orders');
+    navigation.navigate('Orders', {orderStatus: true});
   };
 
   return (

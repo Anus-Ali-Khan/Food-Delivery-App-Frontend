@@ -1,14 +1,11 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-import CustomTopTabBar from '../../components/CustomTopTabBar';
+import MenuScreenTopTabs from '../../components/Navigations/MenuScreenTopTabs';
 
-const Orders = () => {
-  return (
-    <View>
-      {/* <CustomTopTabBar /> */}
-      <Text>Orders</Text>
-    </View>
-  );
+const Orders = ({route}: any) => {
+  const {orderStatus} = route.params || {};
+
+  return <MenuScreenTopTabs orderStatus={orderStatus} />;
 };
 
 export default Orders;

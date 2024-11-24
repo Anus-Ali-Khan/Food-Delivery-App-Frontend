@@ -87,6 +87,22 @@ export type myCartTypes = {
   price: string;
 };
 
+type OngoingOrdersListTypes = {
+  id: string;
+  title: string;
+  description: string;
+  rating: string;
+  price: string;
+  img: ReactNode;
+};
+type HistoryOrdersListTypes = {
+  id: string;
+  title: string;
+  price: string;
+  orderDate: string;
+  img: ReactNode;
+};
+
 export const colors: ColorTypes = {
   PRIMARY: '#FFB803',
   SECONDARY: '#721A16',
@@ -436,5 +452,113 @@ export const locationCards: LocationTypes[] = [
     title: 'Al Saheel Appartment',
     description:
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+  },
+];
+
+export const OngoingOrdersList: OngoingOrdersListTypes[] = [
+  {
+    id: '1',
+    title: 'Thai Cuisine',
+    description: '9:30am',
+    rating: '🔸3 items',
+    price: '$11.99',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '2',
+    title: 'Thai Cuisine',
+    description: '9:30am',
+    rating: '🔸3 items',
+    price: '$11.99',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '3',
+    title: 'Thai Cuisine',
+    description: '9:30am',
+    rating: '🔸3 items',
+    price: '$11.99',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '4',
+    title: 'Thai Cuisine',
+    description: '9:30am',
+    rating: '🔸3 items',
+    price: '$11.99',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+];
+
+export const HistoryOrdersList: HistoryOrdersListTypes[] = [
+  {
+    id: '1',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '2',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '3',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '4',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '5',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '6',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '7',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '8',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '9',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
+  },
+  {
+    id: '10',
+    title: 'Thai Cuisine',
+    price: '$11.99',
+    orderDate: 'Ordered on 3 January',
+    img: <RestaurantLogo height="50px" width="54px" />,
   },
 ];
