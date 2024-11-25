@@ -21,6 +21,7 @@ import MyCards from '../../screens/userSite/MyCards';
 import SelectLocation from '../../screens/userSite/SelectLocation';
 import ChooseLocation from '../../screens/userSite/ChooseLocation';
 import Orders from '../../screens/userSite/Orders';
+import OrderStatus from '../../screens/userSite/OrderStatus';
 
 const Stack = createStackNavigator();
 
@@ -154,6 +155,23 @@ const StackNavigation = () => {
                   <BackArrowIcon name="arrowleft" size={16} color={'black'} />
                 }
                 title="Orders"
+              />
+            );
+          },
+        }}
+      />
+      <Stack.Screen
+        name="OrderStatus"
+        component={OrderStatus}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                title="Order Status"
               />
             );
           },

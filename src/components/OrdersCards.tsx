@@ -2,6 +2,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {ReactNode} from 'react';
 import {colors, fonts} from '../utilities/constants';
 import Button from './Button';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type OngoingOrdersCardProps = {
   id: string;
@@ -20,6 +22,8 @@ const OrdersCards = ({
   price,
   img,
 }: OngoingOrdersCardProps) => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
   return (
     <View style={styles.container}>
       <View style={{flexDirection: 'row', alignItems: 'center', gap: 4}}>
@@ -46,7 +50,7 @@ const OrdersCards = ({
           borderColor={colors.SECONDARY}
           buttonStyle={styles.button}
           textStyle={styles.text}
-          // onPress={() => navigation.navigate('ViewMenu')}
+          onPress={() => navigation.navigate('OrderStatus')}
         />
         <Text
           style={{

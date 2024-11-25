@@ -85,6 +85,7 @@ export type myCartTypes = {
   name: string;
   img: ImageSourcePropType;
   price: string;
+  quantity?: string;
 };
 
 type OngoingOrdersListTypes = {
@@ -410,24 +411,28 @@ export const myCartList: myCartTypes[] = [
     name: 'Late Night Zinger Burger',
     price: '5.99',
     img: Images.body.LateNightZB,
+    quantity: 'x1',
   },
   {
     id: '2',
     name: 'Chicken Chineese',
     price: '6.00',
     img: Images.body.chineese,
+    quantity: 'x1',
   },
   {
     id: '3',
     name: 'Late Night Zinger Burger',
     price: '5.99',
     img: Images.body.LateNightZB,
+    quantity: 'x1',
   },
   {
     id: '4',
     name: 'Chicken Chineese',
     price: '6.00',
     img: Images.body.chineese,
+    quantity: 'x1',
   },
 ];
 
