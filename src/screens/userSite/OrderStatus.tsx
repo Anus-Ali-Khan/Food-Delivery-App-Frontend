@@ -149,15 +149,14 @@ const OrderStatus = () => {
           // flex: 1,
           marginTop: 24,
         }}>
- 
-
         {deliveryTimeData.map((item, index) => (
           <View key={item.title} style={{marginLeft: 20}}>
             <Text
               style={{
-                color: index===deliveryTimeData.length - 1
-                  ? '#C7C7C7'
-                  : colors.SECONDARY,
+                color:
+                  index === deliveryTimeData.length - 1
+                    ? '#C7C7C7'
+                    : colors.SECONDARY,
                 fontFamily: fonts.SECONDARY,
                 fontSize: 20,
               }}>
@@ -173,7 +172,10 @@ const OrderStatus = () => {
               {item.icon}
               <Text
                 style={{
-                  color: '#263238',
+                  color:
+                    index === deliveryTimeData.length - 1
+                      ? '#C7C7C7'
+                      : '#263238',
                   fontFamily: fonts.SECONDARY,
                   fontSize: 14,
                 }}>
@@ -183,20 +185,18 @@ const OrderStatus = () => {
             {index === deliveryTimeData.length - 1 ? (
               <View></View>
             ) : (
-              <View style={{marginBottom: 8,marginLeft:4}}>
-              <TimelineDividerSvg />
+              <View style={{marginBottom: 8, marginLeft: 4}}>
+                <TimelineDividerSvg />
               </View>
             )}
           </View>
         ))}
-          <Button
-        title="15 Minutes to Deliver"
-        borderColor={colors.PRIMARY}
-        style={{marginTop: 20, marginHorizontal: 16}}
-        textColor='black'
-        
-      
-      />
+        <Button
+          title="15 Minutes to Deliver"
+          borderColor={colors.PRIMARY}
+          style={{marginTop: 20, marginHorizontal: 16}}
+          textColor="black"
+        />
       </View>
     </View>
   );
