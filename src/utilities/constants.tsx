@@ -7,6 +7,8 @@ import TimeSvg from '../images/time.svg';
 import DeliverySvg from '../images/Delivery.svg';
 import CategoriesSvg from '../images/categories.svg';
 import BurgerSvg from '../images/burgerCategory.svg';
+import OrderAcceptedSvg from '../images/orderAccepted/OrderStatus/Vector.svg'
+import OrderDeliveredSvg from '../images/orderdelivered/OrderStatus/Vector.svg'
 
 type ColorTypes = {
   [key: string]: string;
@@ -102,6 +104,13 @@ type HistoryOrdersListTypes = {
   price: string;
   orderDate: string;
   img: ReactNode;
+};
+
+type deliveryTimeTypes = {
+  // time: string;
+  title: string;
+  icon: ReactNode;
+  description: string;
 };
 
 export const colors: ColorTypes = {
@@ -565,5 +574,27 @@ export const HistoryOrdersList: HistoryOrdersListTypes[] = [
     price: '$11.99',
     orderDate: 'Ordered on 3 January',
     img: <RestaurantLogo height="50px" width="54px" />,
+  },
+];
+
+
+export const deliveryTimeData: deliveryTimeTypes[] = [
+  {
+    // time: '09:00',
+    title: 'Order Accepted',
+    icon: <OrderAcceptedSvg />,
+    description: 'Your Order has been accepted',
+  },
+  {
+    // time: '09:30',
+    title: 'Order Picked',
+    icon: <DeliverySvg />,
+    description: 'Rider has taken your order for delivery',
+  },
+  {
+    // time: '10:00',
+    title: 'Order Delivered',
+    icon: <OrderDeliveredSvg />,
+    description: 'Your Order has been deliverd',
   },
 ];

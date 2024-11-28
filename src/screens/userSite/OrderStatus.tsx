@@ -9,8 +9,16 @@ import {
 import React from 'react';
 import RestaurantLogo from '../../images/restaurantImage.svg';
 import CallIcon from '../../images/Vector.svg';
-import {colors, fonts, myCartList} from '../../utilities/constants';
+import {
+  colors,
+  deliveryTimeData,
+  fonts,
+  myCartList,
+} from '../../utilities/constants';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
+import Button from '../../components/Button';
+import Timeline from 'react-native-timeline-flatlist';
+import TimelineDividerSvg from '../../images/timelineDivider/OrderStatus/Rectangle78.svg';
 
 const RestaurantDetails = {
   img: <RestaurantLogo height="50px" width="54px" />,
@@ -135,6 +143,60 @@ const OrderStatus = () => {
             size={11}
           />
         </TouchableOpacity>
+      </View>
+      <View
+        style={{
+          // flex: 1,
+          marginTop: 24,
+        }}>
+ 
+
+        {deliveryTimeData.map((item, index) => (
+          <View key={item.title} style={{marginLeft: 20}}>
+            <Text
+              style={{
+                color: index===deliveryTimeData.length - 1
+                  ? '#C7C7C7'
+                  : colors.SECONDARY,
+                fontFamily: fonts.SECONDARY,
+                fontSize: 20,
+              }}>
+              {item.title}
+            </Text>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 4,
+                marginBottom: 8,
+              }}>
+              {item.icon}
+              <Text
+                style={{
+                  color: '#263238',
+                  fontFamily: fonts.SECONDARY,
+                  fontSize: 14,
+                }}>
+                {item.description}
+              </Text>
+            </View>
+            {index === deliveryTimeData.length - 1 ? (
+              <View></View>
+            ) : (
+              <View style={{marginBottom: 8,marginLeft:4}}>
+              <TimelineDividerSvg />
+              </View>
+            )}
+          </View>
+        ))}
+          <Button
+        title="15 Minutes to Deliver"
+        borderColor={colors.PRIMARY}
+        style={{marginTop: 20, marginHorizontal: 16}}
+        textColor='black'
+        
+      
+      />
       </View>
     </View>
   );
