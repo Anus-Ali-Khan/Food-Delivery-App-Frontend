@@ -17,8 +17,8 @@ import {
 } from '../../utilities/constants';
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import Button from '../../components/Button';
-import Timeline from 'react-native-timeline-flatlist';
 import TimelineDividerSvg from '../../images/timelineDivider/OrderStatus/Rectangle78.svg';
+import OngoingDividerSvg from '../../images/ongoingDivider/OrderStatus/Rectangle79.svg'
 
 const RestaurantDetails = {
   img: <RestaurantLogo height="50px" width="54px" />,
@@ -27,7 +27,9 @@ const RestaurantDetails = {
   rating: '⭐4.1',
 };
 
-const OrderStatus = () => {
+const OrderStatus = ({route}: any) => {
+  const {status} = route.params;
+
   return (
     <View style={{flex: 1, backgroundColor: 'white', marginTop: 6}}>
       <View
@@ -154,8 +156,10 @@ const OrderStatus = () => {
             <Text
               style={{
                 color:
-                  index === deliveryTimeData.length - 1
-                    ? '#C7C7C7'
+                  status === 'ongoing'
+                    ? index === deliveryTimeData.length - 1
+                      ? '#C7C7C7'
+                      : colors.SECONDARY
                     : colors.SECONDARY,
                 fontFamily: fonts.SECONDARY,
                 fontSize: 20,
@@ -173,8 +177,10 @@ const OrderStatus = () => {
               <Text
                 style={{
                   color:
-                    index === deliveryTimeData.length - 1
-                      ? '#C7C7C7'
+                    status === 'ongoing'
+                      ? index === deliveryTimeData.length - 1
+                        ? '#C7C7C7'
+                        : colors.SECONDARY
                       : '#263238',
                   fontFamily: fonts.SECONDARY,
                   fontSize: 14,
@@ -186,13 +192,17 @@ const OrderStatus = () => {
               <View></View>
             ) : (
               <View style={{marginBottom: 8, marginLeft: 4}}>
-                <TimelineDividerSvg />
+                {status==='ongoing' && index === deliveryTimeData.length - 2 ?<OngoingDividerSvg/>:<TimelineDividerSvg /> }
               </View>
             )}
           </View>
         ))}
         <Button
-          title="15 Minutes to Deliver"
+          title={
+            status === 'ongoing'
+              ? '15 Minutes to Deliver'
+              : 'Order Delivered on 3rd January'
+          }
           borderColor={colors.PRIMARY}
           style={{marginTop: 20, marginHorizontal: 16}}
           textColor="black"

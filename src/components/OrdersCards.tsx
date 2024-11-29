@@ -50,7 +50,7 @@ const OrdersCards = ({
           borderColor={colors.SECONDARY}
           buttonStyle={styles.button}
           textStyle={styles.text}
-          onPress={() => navigation.navigate('OrderStatus')}
+          onPress={() => navigation.navigate('OrderStatus',{status:'ongoing'})}
         />
         <Text
           style={{
