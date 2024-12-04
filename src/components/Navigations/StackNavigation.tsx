@@ -22,6 +22,7 @@ import SelectLocation from '../../screens/userSite/SelectLocation';
 import ChooseLocation from '../../screens/userSite/ChooseLocation';
 import Orders from '../../screens/userSite/Orders';
 import OrderStatus from '../../screens/userSite/OrderStatus';
+import Settings from '../../screens/userSite/Settings'
 
 const Stack = createStackNavigator();
 
@@ -177,6 +178,23 @@ const StackNavigation = () => {
           },
         }}
       />
+      {/* <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerShown: true,
+          header: () => {
+            return (
+              <CustomStackHeader
+                backIcon={
+                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
+                }
+                title="Settings"
+              />
+            );
+          },
+        }}
+      /> */}
     </Stack.Navigator>
   );
 };
