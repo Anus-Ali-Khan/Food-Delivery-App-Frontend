@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -23,28 +23,28 @@ import Settings from '../../screens/userSite/Settings';
 import SettingsIcon from 'react-native-vector-icons/Ionicons';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {Camera, useCameraDevice, useCameraPermission} from 'react-native-vision-camera';
+import {
+  Camera,
+  useCameraDevice,
+  useCameraPermission,
+} from 'react-native-vision-camera';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const { hasPermission, requestPermission } = useCameraPermission();
-  const [isCameraOpen,setIsCameraOpen] = useState<boolean>(false)
-
-
+  const {hasPermission, requestPermission} = useCameraPermission();
+  const [isCameraOpen, setIsCameraOpen] = useState<boolean>(false);
   const device = useCameraDevice('back');
   if (device == null) return <Text>No devices</Text>;
 
-const handleCamera = async () => {
-    if (!hasPermission){
-    await  requestPermission()
-  }
-  setIsCameraOpen(true)
-  
-}
-
-
+  const handleCamera = async () => {
+    if (!hasPermission) {
+      await requestPermission();
+    }
+    setIsCameraOpen(!isCameraOpen);
+    // navigation.navigate('Camera', {isCameraOpen: true});
+  };
 
   return (
     <Drawer.Navigator
@@ -52,6 +52,14 @@ const handleCamera = async () => {
       drawerContent={props => {
         return (
           <SafeAreaView style={{flex: 1}}>
+             {isCameraOpen && (
+        <Camera
+          style={StyleSheet.absoluteFill}
+          device={device}
+          isActive={isCameraOpen}
+          // resizeMode='contain'
+        />
+      )}
             <DrawerContentScrollView>
               <View
                 style={{
@@ -63,7 +71,7 @@ const handleCamera = async () => {
                   marginBottom: 24,
                 }}>
                 <View>
-                  <View
+                  <TouchableOpacity
                     style={{
                       position: 'absolute',
                       backgroundColor: colors.SECONDARY,
@@ -73,16 +81,12 @@ const handleCamera = async () => {
                       right: 30,
                       zIndex: 1,
                     }}>
-                    <CameraIcon name="camera" color={'white'} onPress={handleCamera} />
-                    { isCameraOpen &&
-                      <Camera
-                      style={StyleSheet.absoluteFill}
-                      device={device}
-                      isActive={isCameraOpen}
+                    <CameraIcon
+                      name="camera"
+                      color={'white'}
+                      onPress={handleCamera}
                     />
-                    }
-                  
-                  </View>
+                  </TouchableOpacity>
                   <UserPicSvg />
                 </View>
                 <Text

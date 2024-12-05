@@ -23,6 +23,7 @@ import ChooseLocation from '../../screens/userSite/ChooseLocation';
 import Orders from '../../screens/userSite/Orders';
 import OrderStatus from '../../screens/userSite/OrderStatus';
 import Settings from '../../screens/userSite/Settings'
+import Camera from '../Camera';
 
 const Stack = createStackNavigator();
 
@@ -178,9 +179,9 @@ const StackNavigation = () => {
           },
         }}
       />
-      {/* <Stack.Screen
-        name="Settings"
-        component={Settings}
+      <Stack.Screen
+        name="Camera"
+        component={Camera}
         options={{
           headerShown: true,
           header: () => {
@@ -194,7 +195,7 @@ const StackNavigation = () => {
             );
           },
         }}
-      /> */}
+      />
     </Stack.Navigator>
   );
 };
