@@ -1,5 +1,6 @@
 import {
   Image,
+  PermissionsAndroid,
   SafeAreaView,
   StyleSheet,
   Text,
@@ -23,27 +24,45 @@ import Settings from '../../screens/userSite/Settings';
 import SettingsIcon from 'react-native-vector-icons/Ionicons';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import {
-  Camera,
-  useCameraDevice,
-  useCameraPermission,
-} from 'react-native-vision-camera';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const {hasPermission, requestPermission} = useCameraPermission();
-  const [isCameraOpen, setIsCameraOpen] = useState<boolean>(false);
-  const device = useCameraDevice('back');
-  if (device == null) return <Text>No devices</Text>;
+  const [photo,setPhoto] = useState<string>()
 
   const handleCamera = async () => {
-    if (!hasPermission) {
-      await requestPermission();
-    }
-    setIsCameraOpen(!isCameraOpen);
-    // navigation.navigate('Camera', {isCameraOpen: true});
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          {
+            title: "App Camera Permission",
+            message:"App needs access to your camera ",
+            buttonNeutral: "Ask Me Later",
+            buttonNegative: "Cancel",
+            buttonPositive: "OK"
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          const result = await launchCamera({
+            mediaType: 'photo',
+            cameraType: 'back',
+          });
+          if(result){
+            const photo = (result.assets ?? [])[0].uri 
+            setPhoto(photo)
+          }
+          console.log("Camera permission given");
+        } else {
+          console.log("Camera permission denied");
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    
+ 
   };
 
   return (
@@ -52,14 +71,6 @@ const DrawerNavigation = () => {
       drawerContent={props => {
         return (
           <SafeAreaView style={{flex: 1}}>
-             {isCameraOpen && (
-        <Camera
-          style={StyleSheet.absoluteFill}
-          device={device}
-          isActive={isCameraOpen}
-          // resizeMode='contain'
-        />
-      )}
             <DrawerContentScrollView>
               <View
                 style={{
@@ -87,7 +98,11 @@ const DrawerNavigation = () => {
                       onPress={handleCamera}
                     />
                   </TouchableOpacity>
-                  <UserPicSvg />
+                  <View style={{width:170,height:170,backgroundColor:'white',borderRadius:'100%'}}>
+
+                  <Image src={photo} height={170} width={170} />
+                  </View>
+                  {/* <UserPicSvg /> */}
                 </View>
                 <Text
                   style={{

@@ -22,8 +22,7 @@ import SelectLocation from '../../screens/userSite/SelectLocation';
 import ChooseLocation from '../../screens/userSite/ChooseLocation';
 import Orders from '../../screens/userSite/Orders';
 import OrderStatus from '../../screens/userSite/OrderStatus';
-import Settings from '../../screens/userSite/Settings'
-import Camera from '../Camera';
+
 
 const Stack = createStackNavigator();
 
@@ -179,27 +178,11 @@ const StackNavigation = () => {
           },
         }}
       />
-      <Stack.Screen
-        name="Camera"
-        component={Camera}
-        options={{
-          headerShown: true,
-          header: () => {
-            return (
-              <CustomStackHeader
-                backIcon={
-                  <BackArrowIcon name="arrowleft" size={16} color={'black'} />
-                }
-                title="Settings"
-              />
-            );
-          },
-        }}
-      />
+      
     </Stack.Navigator>
   );
 };
 
 export default StackNavigation;
 
-const styles = StyleSheet.create({});
+
