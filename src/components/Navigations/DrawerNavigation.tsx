@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -25,44 +25,48 @@ import SettingsIcon from 'react-native-vector-icons/Ionicons';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
-
+import CustomModal from '../CustomModal';
+import Button from '../Button';
+import BottomSheet from '../BottomSheet';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
-  const [photo,setPhoto] = useState<string>()
+  const [photo, setPhoto] = useState<string>();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const handleCamera = async () => {
-      try {
-        const granted = await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.CAMERA,
-          {
-            title: "App Camera Permission",
-            message:"App needs access to your camera ",
-            buttonNeutral: "Ask Me Later",
-            buttonNegative: "Cancel",
-            buttonPositive: "OK"
-          }
-        );
-        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-          const result = await launchCamera({
-            mediaType: 'photo',
-            cameraType: 'back',
-          });
-          if(result){
-            const photo = (result.assets ?? [])[0].uri 
-            setPhoto(photo)
-          }
-          console.log("Camera permission given");
-        } else {
-          console.log("Camera permission denied");
+    // setIsModalOpen(true);
+
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'App Camera Permission',
+          message: 'App needs access to your camera ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        const result = await launchCamera({
+          mediaType: 'photo',
+          cameraType: 'back',
+        });
+        if (result) {
+          const photo = (result.assets ?? [])[0].uri;
+          setPhoto(photo);
+          console.log(photo);
         }
-      } catch (err) {
-        console.warn(err);
+        console.log('Camera permission given');
+      } else {
+        console.log('Camera permission denied');
       }
-    
- 
+    } catch (err) {
+      console.warn(err);
+    }
   };
 
   return (
@@ -71,6 +75,25 @@ const DrawerNavigation = () => {
       drawerContent={props => {
         return (
           <SafeAreaView style={{flex: 1}}>
+            {/* {isModalOpen && (
+              <CustomModal
+                isOpen={isModalOpen}
+                children={
+                  <View style={styles.modalStyle}>
+                    <TouchableOpacity style={styles.modalButtonStyle}>
+                      <Text style={styles.textStyle}>Open Camera</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.modalButtonStyle}>
+                      <Text style={styles.textStyle}>Open gallery</Text>
+                    </TouchableOpacity>
+                    <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
+                    <Button title='Cancel' borderColor='transparent' textColor='white'  backgroundColor={colors.SECONDARY} style={{width:100}} />
+                    <Button title='Ok'borderColor='transparent' textColor='white' backgroundColor={colors.SECONDARY} style={{width:100}}/>
+                    </View>
+                  </View>
+                }
+              />
+            )} */}
             <DrawerContentScrollView>
               <View
                 style={{
@@ -98,11 +121,15 @@ const DrawerNavigation = () => {
                       onPress={handleCamera}
                     />
                   </TouchableOpacity>
-                  <View style={{width:170,height:170,backgroundColor:'white',borderRadius:'100%'}}>
-
-                  <Image src={photo} height={170} width={170} />
+                  <View
+                    style={{
+                      width: 170,
+                      height: 170,
+                      backgroundColor: 'white',
+                      borderRadius: '100%',
+                    }}>
+                    <Image src={photo} height={170} width={170} />
                   </View>
-                  {/* <UserPicSvg /> */}
                 </View>
                 <Text
                   style={{
@@ -198,4 +225,20 @@ const DrawerNavigation = () => {
 
 export default DrawerNavigation;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  modalStyle: {
+    backgroundColor: 'white',
+    height: 160,
+    width: 250,
+    borderRadius: 12,
+    padding: 16,
+    gap: 10,
+  },
+  modalButtonStyle: {
+    // backgroundColor: colors.SECONDARY,
+  },
+  textStyle: {
+    color: 'black',
+    fontSize: 18,
+  },
+});
