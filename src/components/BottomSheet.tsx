@@ -31,6 +31,8 @@ const CustomBottomSheet = ({
     console.log('handleSheetChanges', index);
   }, []);
 
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+
   const handleCamera = async () => {
     setIsBSOpen(false);
 
@@ -66,7 +68,11 @@ const CustomBottomSheet = ({
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <BottomSheet ref={bottomSheetRef} onChange={handleSheetChanges}>
+      <BottomSheet
+        ref={bottomSheetRef}
+        index={1}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}>
         <BottomSheetView style={styles.contentContainer}>
           <TouchableOpacity
             style={{

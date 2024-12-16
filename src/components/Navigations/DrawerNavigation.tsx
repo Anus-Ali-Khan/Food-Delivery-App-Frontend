@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -18,24 +18,98 @@ import TopTabNavigation from './TopTabNavigation';
 import {colors, fonts} from '../../utilities/constants';
 import LogoutModal from '../LogoutModal';
 import Info from '../../screens/userSite/Info';
-import UserPicSvg from '../../images/userPic/Home/Ellipse45.svg';
+// import UserPicSvg from '../../images/userPic/Home/Ellipse45.svg';
 import CameraIcon from 'react-native-vector-icons/Feather';
 import Settings from '../../screens/userSite/Settings';
 import SettingsIcon from 'react-native-vector-icons/Ionicons';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-
-import BottomSheet from '../BottomSheet';
+import GalleryIcon from 'react-native-vector-icons/MaterialCommunityIcons';
+// import BottomSheet from '../BottomSheet';
+// import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
+import CustomModal from '../CustomModal';
+import {launchCamera} from 'react-native-image-picker';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   const [isBSOpen, setIsBSOpen] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [photo, setPhoto] = useState<string>('');
+
+  const handleCamera = async () => {
+    setOpenModal(false);
+
+    try {
+      const granted = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.CAMERA,
+        {
+          title: 'App Camera Permission',
+          message: 'App needs access to your camera ',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+        const result = await launchCamera({
+          mediaType: 'photo',
+          cameraType: 'back',
+        });
+        if (result) {
+          const photo = (result.assets ?? [])[0].uri;
+          // setPhoto(photo);
+          console.log(photo);
+        }
+        console.log('Camera permission given');
+      } else {
+        console.log('Camera permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
 
   return (
     <View style={{flex: 1}}>
+      {openModal && (
+        <CustomModal
+          isOpen={openModal}
+          children={
+            <View style={styles.modalStyle}>
+              <Text style={{fontSize: 20, fontFamily: fonts.SECONDARY}}>
+                Select
+              </Text>
+              <View style={[styles.contentContainer]}>
+                <TouchableOpacity
+                  style={{
+                    // justifyContent: 'center',
+                    alignItems: 'center',
+                    gap: 4,
+                  }}>
+                  <CameraIcon
+                    name="camera"
+                    size={30}
+                    onPress={handleCamera}
+                    color={colors.SECONDARY}
+                  />
+                  <Text style={[styles.ModaltextStyle]}>Camera</Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={{alignItems: 'center', gap: 4}}>
+                  <GalleryIcon
+                    name="view-gallery-outline"
+                    size={30}
+                    onPress={() => setIsBSOpen(false)}
+                    color={colors.SECONDARY}
+                  />
+                  <Text style={styles.ModaltextStyle}>Gallery</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          }
+        />
+      )}
       <Drawer.Navigator
         initialRouteName="TopTabNavigation"
         drawerContent={props => {
@@ -65,7 +139,7 @@ const DrawerNavigation = () => {
                       <CameraIcon
                         name="camera"
                         color={'white'}
-                        onPress={() => setIsBSOpen(true)}
+                        onPress={() => setOpenModal(true)}
                       />
                     </TouchableOpacity>
                     <View
@@ -167,14 +241,14 @@ const DrawerNavigation = () => {
           }}
         />
       </Drawer.Navigator>
-      {isBSOpen && (
+      {/* {isBSOpen && (
         <BottomSheet
           isBSOpen={isBSOpen}
           setIsBSOpen={setIsBSOpen}
           photo={photo}
           setPhoto={setPhoto}
         />
-      )}
+      )} */}
     </View>
   );
 };
@@ -190,11 +264,17 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 10,
   },
-  modalButtonStyle: {
-    // backgroundColor: colors.SECONDARY,
-  },
   textStyle: {
     color: 'black',
     fontSize: 18,
+  },
+  contentContainer: {
+    padding: 20,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  ModaltextStyle: {
+    fontFamily: fonts.SECONDARY,
   },
 });
