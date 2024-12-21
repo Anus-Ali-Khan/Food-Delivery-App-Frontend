@@ -38,7 +38,10 @@ PickupRestauarntCardProps) => {
     <TouchableOpacity
       style={styles.cardContainer}
       onPress={handleNavigateToRestaurantDetails}>
-      <ImageBackground source={Images.body.pickupCard} style={styles.image}>
+      <ImageBackground
+        source={Images.body.pickupCard}
+        style={styles.image}
+        borderRadius={15}>
         {/* <LinearGradient
           colors={['black', 'gray', 'white']}
           start={{x: 1, y: 1}}
@@ -51,6 +54,7 @@ PickupRestauarntCardProps) => {
             opacity: 0.2,
             width: '100%',
             position: 'absolute',
+            borderRadius: 15,
           }}></View>
         {/* </LinearGradient> */}
 
@@ -92,7 +96,7 @@ export default PickupRestaurants;
 const styles = StyleSheet.create({
   cardContainer: {
     marginBottom: 20,
-    borderRadius: 30,
+    borderRadius: 20,
   },
   image: {
     width: '100%',

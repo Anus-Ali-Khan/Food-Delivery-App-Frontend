@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Modal as RNModal,
 } from 'react-native';
 import React, {useState} from 'react';
 import {
@@ -18,17 +19,14 @@ import TopTabNavigation from './TopTabNavigation';
 import {colors, fonts} from '../../utilities/constants';
 import LogoutModal from '../LogoutModal';
 import Info from '../../screens/userSite/Info';
-// import UserPicSvg from '../../images/userPic/Home/Ellipse45.svg';
 import CameraIcon from 'react-native-vector-icons/Feather';
 import Settings from '../../screens/userSite/Settings';
 import SettingsIcon from 'react-native-vector-icons/Ionicons';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
 import GalleryIcon from 'react-native-vector-icons/MaterialCommunityIcons';
-// import BottomSheet from '../BottomSheet';
-// import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import CustomModal from '../CustomModal';
-import {launchCamera} from 'react-native-image-picker';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 
 const Drawer = createDrawerNavigator();
 
@@ -40,7 +38,6 @@ const DrawerNavigation = () => {
 
   const handleCamera = async () => {
     setOpenModal(false);
-
     try {
       const granted = await PermissionsAndroid.request(
         PermissionsAndroid.PERMISSIONS.CAMERA,
@@ -57,14 +54,43 @@ const DrawerNavigation = () => {
           mediaType: 'photo',
           cameraType: 'back',
         });
+
         if (result) {
-          const photo = (result.assets ?? [])[0].uri;
-          // setPhoto(photo);
-          console.log(photo);
+          const photo = (result.assets ?? [])[0]?.originalPath;
+          setPhoto(photo as string);
         }
         console.log('Camera permission given');
       } else {
         console.log('Camera permission denied');
+      }
+    } catch (err) {
+      console.warn(err);
+    }
+  };
+
+  const handleGallery = async () => {
+    setOpenModal(false);
+    try {
+      const grantedGallery = await PermissionsAndroid.request(
+        PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+        {
+          title: 'App Gallery Permission',
+          message: 'App needs access to your photos',
+          buttonNeutral: 'Ask Me Later',
+          buttonNegative: 'Cancel',
+          buttonPositive: 'OK',
+        },
+      );
+      if (grantedGallery === PermissionsAndroid.RESULTS.GRANTED) {
+        console.log('Gallery permission given');
+        const result = await launchImageLibrary({mediaType: 'photo'});
+        console.log(result);
+        if (result) {
+          const photo = (result.assets ?? [])[0]?.uri;
+          setPhoto(photo as string);
+        }
+      } else {
+        console.log('Gallery permission denied');
       }
     } catch (err) {
       console.warn(err);
@@ -76,39 +102,45 @@ const DrawerNavigation = () => {
       {openModal && (
         <CustomModal
           isOpen={openModal}
-          children={
-            <View style={styles.modalStyle}>
-              <Text style={{fontSize: 20, fontFamily: fonts.SECONDARY}}>
-                Select
-              </Text>
-              <View style={[styles.contentContainer]}>
-                <TouchableOpacity
-                  style={{
-                    // justifyContent: 'center',
-                    alignItems: 'center',
-                    gap: 4,
-                  }}>
-                  <CameraIcon
-                    name="camera"
-                    size={30}
-                    onPress={handleCamera}
-                    color={colors.SECONDARY}
-                  />
-                  <Text style={[styles.ModaltextStyle]}>Camera</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{alignItems: 'center', gap: 4}}>
-                  <GalleryIcon
-                    name="view-gallery-outline"
-                    size={30}
-                    onPress={() => setIsBSOpen(false)}
-                    color={colors.SECONDARY}
-                  />
-                  <Text style={styles.ModaltextStyle}>Gallery</Text>
-                </TouchableOpacity>
-              </View>
+          modalStyle={{
+            position: 'absolute',
+            top: 300,
+            left: 50,
+            backgroundColor: 'rgba(0,0,0,0.5)',
+          }}>
+          <View style={styles.modalStyle}>
+            <Text style={{fontSize: 20, fontFamily: fonts.SECONDARY}}>
+              Select
+            </Text>
+            <View style={[styles.contentContainer]}>
+              <TouchableOpacity
+                style={{
+                  alignItems: 'center',
+                  gap: 4,
+                }}
+                onPress={handleCamera}>
+                <CameraIcon
+                  name="camera"
+                  size={30}
+                  color={colors.SECONDARY}
+                  onPress={handleCamera}
+                />
+                <Text style={[styles.ModaltextStyle]}>Camera</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{alignItems: 'center', gap: 4}}
+                onPress={handleGallery}>
+                <GalleryIcon
+                  name="view-gallery-outline"
+                  size={30}
+                  color={colors.SECONDARY}
+                  onPress={handleCamera}
+                />
+                <Text style={styles.ModaltextStyle}>Gallery</Text>
+              </TouchableOpacity>
             </View>
-          }
-        />
+          </View>
+        </CustomModal>
       )}
       <Drawer.Navigator
         initialRouteName="TopTabNavigation"
@@ -149,7 +181,16 @@ const DrawerNavigation = () => {
                         backgroundColor: 'white',
                         borderRadius: '100%',
                       }}>
-                      <Image src={photo} height={170} width={170} />
+                      <Image
+                        source={{
+                          uri: photo
+                            ? photo
+                            : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSLU5_eUUGBfxfxRd4IquPiEwLbt4E_6RYMw&s',
+                        }}
+                        height={170}
+                        width={170}
+                        borderRadius={100}
+                      />
                     </View>
                   </View>
                   <Text
@@ -241,14 +282,6 @@ const DrawerNavigation = () => {
           }}
         />
       </Drawer.Navigator>
-      {/* {isBSOpen && (
-        <BottomSheet
-          isBSOpen={isBSOpen}
-          setIsBSOpen={setIsBSOpen}
-          photo={photo}
-          setPhoto={setPhoto}
-        />
-      )} */}
     </View>
   );
 };

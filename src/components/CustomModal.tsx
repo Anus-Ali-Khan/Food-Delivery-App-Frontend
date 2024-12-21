@@ -4,16 +4,17 @@ import React, {PropsWithChildren, ReactElement} from 'react';
 interface ModalPropsType extends PropsWithChildren {
   children: ReactElement;
   isOpen: boolean;
+  modalStyle?: {};
 }
 
-const CustomModal = ({isOpen, children}: ModalPropsType) => {
+const CustomModal = ({isOpen, children, modalStyle}: ModalPropsType) => {
   return (
     <RNModal
       visible={isOpen}
       transparent={true}
       animationType="fade"
       statusBarTranslucent={true}>
-      <View style={styles.modalContainer}>{children}</View>
+      <View style={[styles.modalContainer, {...modalStyle}]}>{children}</View>
     </RNModal>
   );
 };
