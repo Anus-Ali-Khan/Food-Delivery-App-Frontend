@@ -6,12 +6,12 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Modal as RNModal,
 } from 'react-native';
 import React, {useState} from 'react';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
+  DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
 import CustomHeader from '../CustomHeader';
@@ -24,9 +24,9 @@ import Settings from '../../screens/userSite/Settings';
 import SettingsIcon from 'react-native-vector-icons/Ionicons';
 import {ParamListBase, useNavigation} from '@react-navigation/native';
 import {StackNavigationProp} from '@react-navigation/stack';
-import GalleryIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import CustomModal from '../CustomModal';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import CameraModal from '../CameraModal';
 
 const Drawer = createDrawerNavigator();
 
@@ -35,6 +35,7 @@ const DrawerNavigation = () => {
   const [isBSOpen, setIsBSOpen] = useState<boolean>(false);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [photo, setPhoto] = useState<string>('');
+  const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
 
   const handleCamera = async () => {
     setOpenModal(false);
@@ -55,10 +56,11 @@ const DrawerNavigation = () => {
           cameraType: 'back',
         });
 
-        if (result) {
+        if ((result.assets ?? []).length > 0) {
           const photo = (result.assets ?? [])[0]?.originalPath;
           setPhoto(photo as string);
         }
+
         console.log('Camera permission given');
       } else {
         console.log('Camera permission denied');
@@ -85,7 +87,7 @@ const DrawerNavigation = () => {
         console.log('Gallery permission given');
         const result = await launchImageLibrary({mediaType: 'photo'});
         console.log(result);
-        if (result) {
+        if ((result.assets ?? []).length > 0) {
           const photo = (result.assets ?? [])[0]?.uri;
           setPhoto(photo as string);
         }
@@ -97,50 +99,27 @@ const DrawerNavigation = () => {
     }
   };
 
+  const handleOpenLogoutModal = () => {
+    setOpenLogoutModal(true);
+  };
+
   return (
     <View style={{flex: 1}}>
       {openModal && (
         <CustomModal
           isOpen={openModal}
-          modalStyle={{
-            position: 'absolute',
-            top: 300,
-            left: 50,
-            backgroundColor: 'rgba(0,0,0,0.5)',
-          }}>
-          <View style={styles.modalStyle}>
-            <Text style={{fontSize: 20, fontFamily: fonts.SECONDARY}}>
-              Select
-            </Text>
-            <View style={[styles.contentContainer]}>
-              <TouchableOpacity
-                style={{
-                  alignItems: 'center',
-                  gap: 4,
-                }}
-                onPress={handleCamera}>
-                <CameraIcon
-                  name="camera"
-                  size={30}
-                  color={colors.SECONDARY}
-                  onPress={handleCamera}
-                />
-                <Text style={[styles.ModaltextStyle]}>Camera</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{alignItems: 'center', gap: 4}}
-                onPress={handleGallery}>
-                <GalleryIcon
-                  name="view-gallery-outline"
-                  size={30}
-                  color={colors.SECONDARY}
-                  onPress={handleCamera}
-                />
-                <Text style={styles.ModaltextStyle}>Gallery</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </CustomModal>
+          children={
+            <CameraModal
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              handleCamera={handleCamera}
+              handleGallery={handleGallery}
+            />
+          }
+        />
+      )}
+      {openLogoutModal && (
+        <LogoutModal setOpenLogoutModal={setOpenLogoutModal} />
       )}
       <Drawer.Navigator
         initialRouteName="TopTabNavigation"
@@ -204,7 +183,26 @@ const DrawerNavigation = () => {
                   </Text>
                 </View>
                 <DrawerItemList {...props} />
+                <DrawerItem
+                  label={'Logout'}
+                  labelStyle={{
+                    fontSize: 16,
+                    fontFamily: `${fonts.SECONDARY}`,
+                    fontWeight: 'bold',
+                  }}
+                  style={{
+                    backgroundColor: `${colors.PRIMARY}`,
+                    borderTopRightRadius: 20,
+                    borderBottomRightRadius: 20,
+                  }}
+                  // pressColor=''
+                  activeBackgroundColor={colors.SECONDARY}
+                  activeTintColor="white"
+                  inactiveTintColor={colors.SECONDARY}
+                  onPress={handleOpenLogoutModal}
+                />
               </DrawerContentScrollView>
+
               <TouchableOpacity
                 onPress={() => navigation.navigate('Settings')}
                 style={{
@@ -271,7 +269,7 @@ const DrawerNavigation = () => {
             headerTitleContainerStyle: {width: '100%'},
           }}
         />
-        <Drawer.Screen name="Logout" component={LogoutModal} />
+
         <Drawer.Screen
           name="Settings"
           component={Settings}
