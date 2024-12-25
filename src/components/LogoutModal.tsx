@@ -2,6 +2,8 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import Button from './Button';
 import {colors, fonts} from '../utilities/constants';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 interface propsType {
   openLogoutModal: boolean;
@@ -9,6 +11,7 @@ interface propsType {
 }
 
 const LogoutModal = ({openLogoutModal, setOpenLogoutModal}: propsType) => {
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
   return (
     <View
       style={{
@@ -35,7 +38,7 @@ const LogoutModal = ({openLogoutModal, setOpenLogoutModal}: propsType) => {
             backgroundColor={colors.SECONDARY}
             textColor="white"
             borderColor="transparent"
-            onPressIn={() => setOpenLogoutModal(false)}
+            onPressIn={() => navigation.navigate('Welcome')}
             style={{width: '60%'}}
           />
           <Button
