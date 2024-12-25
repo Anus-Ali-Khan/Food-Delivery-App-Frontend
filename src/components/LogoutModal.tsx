@@ -1,9 +1,7 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, Text, View} from 'react-native';
+import React from 'react';
 import Button from './Button';
-import Images from '../images/Images';
 import {colors, fonts} from '../utilities/constants';
-import CustomModal from './CustomModal';
 
 interface propsType {
   openLogoutModal: boolean;
@@ -12,55 +10,71 @@ interface propsType {
 
 const LogoutModal = ({openLogoutModal, setOpenLogoutModal}: propsType) => {
   return (
-    <CustomModal modalStyle={styles.container} isOpen={openLogoutModal}>
-      <View style={styles.container}>
-        <Text style={styles.title}>
-          Your Order has been placed successfully
+    <View
+      style={{
+        position: 'absolute',
+        top: 300,
+        left: 50,
+        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // zIndex: 999,
+      }}>
+      <View style={styles.modalStyle}>
+        <Text style={styles.textStyle}>
+          Are you sure do you want to Logout ?
         </Text>
-        <Image
-          source={Images.body.orderGif}
-          style={{width: 100, height: 100}}
-        />
-        <View style={{flexDirection: 'row', gap: 8}}>
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginTop: 6,
+            zIndex: 999,
+          }}>
           <Button
-            title="Visit Your Orders"
+            title="Yes, Logout"
             backgroundColor={colors.SECONDARY}
             textColor="white"
             borderColor="transparent"
-            // onPress={handle}
+            onPressIn={() => setOpenLogoutModal(false)}
+            style={{width: '60%'}}
           />
           <Button
             title="Cancel"
             backgroundColor={colors.SECONDARY}
             textColor="white"
             borderColor="transparent"
-            onPress={() => setOpenLogoutModal(false)}
+            onPressIn={() => setOpenLogoutModal(false)}
           />
         </View>
       </View>
-    </CustomModal>
+    </View>
   );
 };
 
 export default LogoutModal;
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#EBEBEB',
-    width: '90%',
-    padding: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
+  modalStyle: {
+    backgroundColor: 'white',
+    height: 150,
+    width: 250,
     borderRadius: 12,
-    marginHorizontal: 16,
-    height: 250,
-    gap: 6,
+    padding: 16,
+    gap: 16,
   },
-  title: {
-    fontFamily: fonts.SECONDARY,
-    fontSize: 20,
+  textStyle: {
     color: 'black',
+    fontSize: 18,
     textAlign: 'center',
-    width: '100%',
+    fontFamily: fonts.SECONDARY,
+  },
+  contentContainer: {
+    padding: 20,
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
+  ModaltextStyle: {
+    fontFamily: fonts.SECONDARY,
   },
 });

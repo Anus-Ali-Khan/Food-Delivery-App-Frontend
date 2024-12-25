@@ -23,8 +23,8 @@ const CameraModal = ({
         position: 'absolute',
         top: 300,
         left: 50,
-        backgroundColor: 'rgba(0,0,0,0.5)',
-        zIndex: 10,
+        // backgroundColor: 'rgba(0,0,0,0.5)',
+        // zIndex: 10,
       }}>
       <View style={styles.modalStyle}>
         <View
@@ -36,7 +36,7 @@ const CameraModal = ({
           <Text style={{fontSize: 20, fontFamily: fonts.SECONDARY}}>
             Select
           </Text>
-          <TouchableOpacity onPress={() => setOpenModal(false)}>
+          <TouchableOpacity onPressIn={() => setOpenModal(false)}>
             <Text
               style={{
                 backgroundColor: colors.SECONDARY,
@@ -59,7 +59,7 @@ const CameraModal = ({
               alignItems: 'center',
               gap: 4,
             }}
-            onPress={handleCamera}>
+            onPressIn={handleCamera}>
             <CameraIcon
               name="camera"
               size={30}
@@ -70,7 +70,7 @@ const CameraModal = ({
           </TouchableOpacity>
           <TouchableOpacity
             style={{alignItems: 'center', gap: 4}}
-            onPress={handleGallery}>
+            onPressIn={handleGallery}>
             <GalleryIcon
               name="view-gallery-outline"
               size={30}

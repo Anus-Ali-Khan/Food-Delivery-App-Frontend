@@ -20,5 +20,6 @@ export default {
     chineese: require('./Chineese.jpg'),
     mapLocation: require('./mapLocation.png'),
     orderGif: require('./OrderGif.gif'),
+    languageIcon: require('./LanguageIcon.png'),
   },
 };

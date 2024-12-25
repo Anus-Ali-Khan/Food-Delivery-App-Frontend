@@ -10,7 +10,7 @@ type PropsType = {
   buttonStyle?: {};
   textStyle?: {};
   style?: {};
-  onPress?: () => void;
+  onPressIn?: () => void;
 };
 
 const Button = ({
@@ -20,7 +20,7 @@ const Button = ({
   borderColor,
   buttonStyle,
   textStyle,
-  onPress,
+  onPressIn,
   style,
 }: PropsType) => {
   return (
@@ -32,7 +32,7 @@ const Button = ({
         ...buttonStyle,
         ...style,
       }}
-      onPress={onPress}>
+      onPressIn={onPressIn}>
       <Text style={{...styles.text, color: textColor, ...textStyle}}>
         {title}
       </Text>
