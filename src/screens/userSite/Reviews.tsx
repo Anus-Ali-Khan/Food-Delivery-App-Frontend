@@ -129,7 +129,7 @@ const Reviews = () => {
       </ScrollView>
       <Button
         title="+"
-        onPress={() => setOpenReviewModal(true)}
+        onPressIn={() => setOpenReviewModal(true)}
         borderColor="transparent"
         textColor={`${colors.SECONDARY}`}
         style={{

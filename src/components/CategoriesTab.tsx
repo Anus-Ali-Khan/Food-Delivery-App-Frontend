@@ -95,7 +95,7 @@ const CategoriesTab = () => {
           textColor="white"
           textStyle={{fontSize: 16}}
           buttonStyle={{paddingVertical: 3}}
-          onPress={handleNavigateToMyCart}
+          onPressIn={handleNavigateToMyCart}
         />
       </View>
     </View>

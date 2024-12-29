@@ -83,7 +83,7 @@ PickupRestauarntCardProps) => {
             borderColor={colors.SECONDARY}
             buttonStyle={styles.button}
             textStyle={styles.text}
-            onPress={() => navigation.navigate('ViewMenu')}
+            onPressIn={() => navigation.navigate('ViewMenu')}
           />
         </View>
       </ImageBackground>

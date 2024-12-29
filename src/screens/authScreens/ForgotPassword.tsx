@@ -63,7 +63,7 @@ const ForgotPassword = () => {
         <View style={{justifyContent: 'flex-end'}}>
           <Button
             title="Verify Email"
-            onPress={handleNavigate}
+            onPressIn={handleNavigate}
             borderColor={colors.PRIMARY}
             buttonStyle={styles.buttons}
           />

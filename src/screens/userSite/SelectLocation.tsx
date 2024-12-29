@@ -111,7 +111,7 @@ const SelectLocation = () => {
         backgroundColor="#07BC49"
         textColor="black"
         style={{marginHorizontal: 16}}
-        onPress={handleNavigateToCart}
+        onPressIn={handleNavigateToCart}
       />
     </View>
   );

@@ -327,7 +327,7 @@ const MyCart = ({route}: any) => {
         textColor={colors.SECONDARY}
         textStyle={{fontFamily: fonts.SECONDARY}}
         style={{marginHorizontal: 16, marginTop: 12}}
-        onPress={handleNavigateToMyCards}
+        onPressIn={handleNavigateToMyCards}
       />
       {openModal && (
         <CustomModal

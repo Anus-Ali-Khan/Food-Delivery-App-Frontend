@@ -47,7 +47,7 @@ const HistoryOrdersCard = ({
           borderColor={colors.SECONDARY}
           buttonStyle={styles.button}
           textStyle={styles.text}
-          onPress={() =>
+          onPressIn={() =>
             navigation.navigate('OrderStatus', {status: 'history'})
           }
         />

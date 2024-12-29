@@ -72,7 +72,7 @@ const ChangePassword = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Change Password"
-            onPress={handleSubmit(onSubmit)}
+            onPressIn={handleSubmit(onSubmit)}
             borderColor={colors.PRIMARY}
             buttonStyle={styles.buttons}
           />

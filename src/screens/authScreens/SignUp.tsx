@@ -126,7 +126,7 @@ const SignUp = () => {
         <View style={styles.buttonContainer}>
           <Button
             title="Sign Up"
-            onPress={handleSubmit(onSubmit)}
+            onPressIn={handleSubmit(onSubmit)}
             borderColor={colors.PRIMARY}
             buttonStyle={styles.buttons}
           />

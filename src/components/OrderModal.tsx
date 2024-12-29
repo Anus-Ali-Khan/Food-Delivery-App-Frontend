@@ -34,14 +34,14 @@ const OrderModal = ({setOpenModal}: PropsType) => {
           backgroundColor={colors.SECONDARY}
           textColor="white"
           borderColor="transparent"
-          onPress={handleClick}
+          onPressIn={handleClick}
         />
         <Button
           title="Cancel"
           backgroundColor={colors.SECONDARY}
           textColor="white"
           borderColor="transparent"
-          onPress={() => setOpenModal(false)}
+          onPressIn={() => setOpenModal(false)}
         />
       </View>
     </View>

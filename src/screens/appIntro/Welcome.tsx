@@ -17,7 +17,7 @@ const Welcome = () => {
           <View>
             <Button
               title={'Continue as a User'}
-              onPress={() => navigation.navigate('OnBoarding')}
+              onPressIn={() => navigation.navigate('OnBoarding')}
               borderColor={colors.PRIMARY}
               buttonStyle={styles.buttons}
             />

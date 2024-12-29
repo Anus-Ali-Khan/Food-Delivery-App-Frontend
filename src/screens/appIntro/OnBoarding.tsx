@@ -18,7 +18,7 @@ const OnBoarding = () => {
         <Text style={styles.extraText}>Delivery app</Text>
         <Button
           title="Sign Up"
-          onPress={() => navigation.navigate('SignUp')}
+          onPressIn={() => navigation.navigate('SignUp')}
           borderColor={colors.PRIMARY}
           buttonStyle={styles.buttons}
         />
@@ -28,7 +28,7 @@ const OnBoarding = () => {
           textColor="white"
           borderColor={colors.PRIMARY}
           buttonStyle={styles.buttons}
-          onPress={() => navigation.navigate('Login')}
+          onPressIn={() => navigation.navigate('Login')}
         />
       </View>
     </ImageBackground>

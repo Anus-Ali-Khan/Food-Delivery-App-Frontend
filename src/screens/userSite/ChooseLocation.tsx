@@ -204,7 +204,7 @@ const ChooseLocation = () => {
           {source.latitude !== 0 && source.longitude !== 0 ? (
             <Button
               title="Remove Source"
-              onPress={() => setSource({latitude: 0, longitude: 0})}
+              onPressIn={() => setSource({latitude: 0, longitude: 0})}
               borderColor="transparent"
               backgroundColor={colors.SECONDARY}
               textColor="white"
@@ -212,7 +212,7 @@ const ChooseLocation = () => {
           ) : (
             <Button
               title={'Choose Source'}
-              onPress={() => setIsChoosingSource(true)}
+              onPressIn={() => setIsChoosingSource(true)}
               borderColor="transparent"
               backgroundColor={
                 isChoosingSource ? colors.PRIMARY : colors.SECONDARY
@@ -223,7 +223,7 @@ const ChooseLocation = () => {
           {destination.latitude !== 0 && destination.longitude !== 0 ? (
             <Button
               title="Remove Destination"
-              onPress={() => setDestination({latitude: 0, longitude: 0})}
+              onPressIn={() => setDestination({latitude: 0, longitude: 0})}
               borderColor="transparent"
               backgroundColor={colors.SECONDARY}
               textColor="white"
@@ -231,7 +231,7 @@ const ChooseLocation = () => {
           ) : (
             <Button
               title={'Choose Destination'}
-              onPress={() => setIsChoosingDestination(true)}
+              onPressIn={() => setIsChoosingDestination(true)}
               borderColor="transparent"
               backgroundColor={
                 isChoosingDestination ? colors.PRIMARY : colors.SECONDARY
@@ -242,7 +242,7 @@ const ChooseLocation = () => {
         </View>
         <Button
           title="Done"
-          onPress={showCoordinates}
+          onPressIn={showCoordinates}
           borderColor="transparent"
           backgroundColor={colors.SECONDARY}
           textColor="white"
