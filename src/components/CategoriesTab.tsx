@@ -28,7 +28,7 @@ const CategoriesTab = () => {
             style={{
               color: 'white',
               position: 'absolute',
-              top: 18,
+              top: 12,
               left: 14,
               zIndex: 10,
             }}

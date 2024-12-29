@@ -38,7 +38,10 @@ const LogoutModal = ({openLogoutModal, setOpenLogoutModal}: propsType) => {
             backgroundColor={colors.SECONDARY}
             textColor="white"
             borderColor="transparent"
-            onPressIn={() => navigation.navigate('Welcome')}
+            onPressIn={() => {
+              setOpenLogoutModal(false);
+              navigation.navigate('Welcome');
+            }}
             style={{width: '60%'}}
           />
           <Button

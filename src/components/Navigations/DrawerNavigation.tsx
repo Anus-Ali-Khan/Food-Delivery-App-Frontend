@@ -34,11 +34,13 @@ import {
 import CustomModal from '../CustomModal';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import CameraModal from '../CameraModal';
+import Orders from '../../screens/userSite/Orders';
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
   const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
+
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [photo, setPhoto] = useState<string>('');
   const [openLogoutModal, setOpenLogoutModal] = useState<boolean>(false);
@@ -266,7 +268,8 @@ const DrawerNavigation = () => {
         />
         <Drawer.Screen
           name="Order"
-          component={TopTabNavigation}
+          initialParams={{orderStatus: true}}
+          component={Orders}
           options={{
             headerTitle: props => <CustomHeader />,
             headerTitleContainerStyle: {width: '100%'},
