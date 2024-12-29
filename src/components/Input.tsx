@@ -59,7 +59,7 @@ const Input = ({
       {secureTextEntry &&
         (showPassword ? (
           <FeatherIcons
-            name="eye"
+            name="eye-off"
             color={'#2d333a'}
             size={22}
             style={{position: 'absolute', top: 14, right: 15}}
@@ -67,7 +67,7 @@ const Input = ({
           />
         ) : (
           <FeatherIcons
-            name="eye-off"
+            name="eye"
             color={'#2d333a'}
             size={22}
             style={{position: 'absolute', top: 14, right: 15}}

@@ -18,7 +18,8 @@ import {
 import ForwardIcon from 'react-native-vector-icons/Ionicons';
 import Button from '../../components/Button';
 import TimelineDividerSvg from '../../images/timelineDivider/OrderStatus/Rectangle78.svg';
-import OngoingDividerSvg from '../../images/ongoingDivider/OrderStatus/Rectangle79.svg'
+import OngoingDividerSvg from '../../images/ongoingDivider/OrderStatus/Rectangle79.svg';
+import CheckIcon from 'react-native-vector-icons/FontAwesome6';
 
 const RestaurantDetails = {
   img: <RestaurantLogo height="50px" width="54px" />,
@@ -173,7 +174,11 @@ const OrderStatus = ({route}: any) => {
                 gap: 4,
                 marginBottom: 8,
               }}>
-              {item.icon}
+              {status === 'history' && index === deliveryTimeData.length - 1 ? (
+                <CheckIcon name="circle-check" color={colors.PRIMARY} />
+              ) : (
+                item.icon
+              )}
               <Text
                 style={{
                   color:
@@ -192,7 +197,12 @@ const OrderStatus = ({route}: any) => {
               <View></View>
             ) : (
               <View style={{marginBottom: 8, marginLeft: 4}}>
-                {status==='ongoing' && index === deliveryTimeData.length - 2 ?<OngoingDividerSvg/>:<TimelineDividerSvg /> }
+                {status === 'ongoing' &&
+                index === deliveryTimeData.length - 2 ? (
+                  <OngoingDividerSvg />
+                ) : (
+                  <TimelineDividerSvg />
+                )}
               </View>
             )}
           </View>

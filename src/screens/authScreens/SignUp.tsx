@@ -46,6 +46,7 @@ const SignUp = () => {
 
   const onSubmit = (data: FormDataType) => {
     console.log('IT WORKED', data);
+    navigation.navigate('Login');
   };
 
   return (

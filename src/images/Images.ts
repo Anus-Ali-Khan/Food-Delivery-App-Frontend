@@ -21,5 +21,10 @@ export default {
     mapLocation: require('./mapLocation.png'),
     orderGif: require('./OrderGif.gif'),
     languageIcon: require('./LanguageIcon.png'),
+    faqs: require('./faqs.png'),
+    changePassword: require('./changePassword.png'),
+    termsnConditions: require('./T&Cs.png'),
+    contactUs: require('./Contactus.png'),
+    aboutUs: require('./aboutUs.png'),
   },
 };

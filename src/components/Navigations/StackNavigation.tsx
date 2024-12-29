@@ -23,13 +23,12 @@ import ChooseLocation from '../../screens/userSite/ChooseLocation';
 import Orders from '../../screens/userSite/Orders';
 import OrderStatus from '../../screens/userSite/OrderStatus';
 
-
 const Stack = createStackNavigator();
 
 const StackNavigation = () => {
   return (
     <Stack.Navigator
-      initialRouteName="DrawerNavigation"
+      initialRouteName="SplashScreen"
       screenOptions={{headerShown: false}}>
       <Stack.Screen name="SplashScreen" component={SplashScreen} />
       <Stack.Screen name="Welcome" component={Welcome} />
@@ -178,11 +177,8 @@ const StackNavigation = () => {
           },
         }}
       />
-      
     </Stack.Navigator>
   );
 };
 
 export default StackNavigation;
-
-

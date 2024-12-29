@@ -7,6 +7,8 @@ import {Controller, useForm} from 'react-hook-form';
 import {ScrollView} from 'react-native-gesture-handler';
 import {zodResolver} from '@hookform/resolvers/zod';
 import {z, ZodType} from 'zod';
+import {ParamListBase, useNavigation} from '@react-navigation/native';
+import {StackNavigationProp} from '@react-navigation/stack';
 
 type FormDataType = {
   email: string;
@@ -18,6 +20,7 @@ const ChangePassword = () => {
     email: z.string().email(),
     newPassword: z.string().min(5).max(20),
   });
+  const navigation = useNavigation<StackNavigationProp<ParamListBase>>();
 
   const {
     control,
@@ -27,6 +30,7 @@ const ChangePassword = () => {
 
   const onSubmit = (data: FormDataType) => {
     console.log('IT WORKED', data);
+    navigation.navigate('Info');
   };
 
   return (
